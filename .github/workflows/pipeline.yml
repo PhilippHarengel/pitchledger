@@ -51,7 +51,7 @@ jobs:
         run: |
           git config user.name "pitchledger-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data site
+          git add data docs
           git diff --cached --quiet && echo "nothing to commit" && exit 0
           git commit -m "daily: picks + grades $(date -u +%F)"
           git pull --rebase origin main
@@ -86,7 +86,7 @@ jobs:
         run: |
           git config user.name "pitchledger-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data site
+          git add data docs
           git diff --cached --quiet && echo "nothing to commit" && exit 0
           git commit -m "snapshot: market refresh $(date -u +%FT%H:%M)"
           git pull --rebase origin main

@@ -28,7 +28,8 @@ export const PATHS = {
   PICKS_DIR: 'data/picks',
   SNAPSHOT: 'data/market-snapshot.json',
   FIXTURES_FALLBACK: 'data/fixtures.json',
-  SITE: 'site/index.html',
+  // Pages deploy-from-branch serves only / or /docs — site lives in docs/.
+  SITE: 'docs/index.html',
 } as const;
 
 /** Ledger rows exist only from this date onward (launch cutoff, D14). */

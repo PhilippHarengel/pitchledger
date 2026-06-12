@@ -45,7 +45,7 @@ play responsibly: [bzga.de](https://www.bzga.de) · [begambleaware.org](https://
    draw-pick rate 10-30% and skip rate < 50% before trusting thresholds.
 4. Run `FOOTBALL_DATA_KEY=... npm run backfill` — folds results played before
    launch into the ratings (ledger stays empty for pre-launch matches).
-5. Create GitHub repo, push, enable Pages (deploy from branch, `/site` on main),
+5. Create GitHub repo, push, enable Pages (deploy from branch, `/docs` on main),
    set repo variable `PAGES_URL`, enable branch protection on main (no force-push).
 6. `workflow_dispatch` the daily job once manually; check the live page.
 
