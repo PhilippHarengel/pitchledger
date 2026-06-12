@@ -1,0 +1,93 @@
+# PitchLedger pipeline — ONE workflow, two scheduled jobs (eng review D9).
+#
+#   daily    08:00 UTC (= 04:00 EDT): grade -> elo update -> pick -> build -> push
+#            Sequential by construction: picks always use freshly graded ratings.
+#   snapshot 15:00 UTC (= 11:00 EDT): refresh "market now" display only.
+#
+# GitHub cron is best-effort (15-60 min jitter): 04:00 ET is >=8h before the
+# earliest possible kickoff, so jitter never violates the 6h pre-kickoff floor.
+# NOTE: schedules only fire from the default branch, and a new/changed cron
+# can take up to 1h to register.
+name: pipeline
+
+on:
+  schedule:
+    - cron: '0 8 * * *'   # daily job
+    - cron: '0 15 * * *'  # market snapshot
+  workflow_dispatch:
+    inputs:
+      job:
+        description: 'Which job to run'
+        required: true
+        default: 'daily'
+        type: choice
+        options: [daily, snapshot]
+
+# Serialize all pipeline runs; never cancel a queued run (eng review D2/1A).
+concurrency:
+  group: pipeline
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  daily:
+    if: github.event.schedule == '0 8 * * *' || (github.event_name == 'workflow_dispatch' && inputs.job == 'daily')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm test
+      - name: Run daily pipeline (grade -> elo -> pick -> build)
+        env:
+          FOOTBALL_DATA_KEY: ${{ secrets.FOOTBALL_DATA_KEY }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          REPO_URL: ${{ github.server_url }}/${{ github.repository }}
+        run: npm run daily
+      - name: Commit and push (rebase guards against the snapshot writer)
+        run: |
+          git config user.name "pitchledger-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data site
+          git diff --cached --quiet && echo "nothing to commit" && exit 0
+          git commit -m "daily: picks + grades $(date -u +%F)"
+          git pull --rebase origin main
+          git push origin main
+      - name: Freshness check (SHA embedded in live page, retries over ~10 min)
+        run: |
+          SHA=$(git rev-parse HEAD)
+          PAGE_URL="${{ vars.PAGES_URL }}"
+          if [ -z "$PAGE_URL" ]; then echo "PAGES_URL var not set — skipping check"; exit 0; fi
+          for i in $(seq 1 10); do
+            if curl -fsSL "$PAGE_URL" | grep -q "data-commit=\"$SHA\""; then
+              echo "live page serves $SHA"; exit 0
+            fi
+            echo "attempt $i: page not fresh yet, waiting 60s"; sleep 60
+          done
+          echo "::error::live page never served $SHA — Pages deploy stuck?"; exit 1
+
+  snapshot:
+    if: github.event.schedule == '0 15 * * *' || (github.event_name == 'workflow_dispatch' && inputs.job == 'snapshot')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - name: Refresh market-now display
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          REPO_URL: ${{ github.server_url }}/${{ github.repository }}
+        run: npm run snapshot
+      - name: Commit and push
+        run: |
+          git config user.name "pitchledger-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data site
+          git diff --cached --quiet && echo "nothing to commit" && exit 0
+          git commit -m "snapshot: market refresh $(date -u +%FT%H:%M)"
+          git pull --rebase origin main
+          git push origin main

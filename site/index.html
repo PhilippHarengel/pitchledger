@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-commit="uncommitted">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PitchLedger — WC26 model picks, publicly graded</title>
+<meta property="og:title" content="PitchLedger — WC26 picks, publicly graded">
+<meta property="og:description" content="Track record: no graded picks yet. Every pick committed before kickoff, graded after.">
+<style>
+  :root {
+    --paper: oklch(98% 0.005 95);
+    --ink: oklch(22% 0.01 95);
+    --muted: oklch(50% 0.01 95);
+    --line: oklch(88% 0.005 95);
+    --accent: oklch(55% 0.15 150);
+    --loss: oklch(50% 0.19 25);
+    --text-base: clamp(1rem, 0.95rem + 0.3vw, 1.1rem);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0 auto; max-width: 960px; padding: 0 20px 56px;
+    background: var(--paper); color: var(--ink);
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: var(--text-base); line-height: 1.5;
+    font-variant-numeric: tabular-nums;
+  }
+  header {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    justify-content: space-between; align-items: baseline;
+    border-bottom: 3px solid var(--ink); padding: 28px 0 14px;
+  }
+  .wordmark { font-weight: 800; font-size: 1.45rem; letter-spacing: -0.5px; }
+  .wordmark em { font-style: normal; color: var(--accent); }
+  .tagline { color: var(--muted); font-size: 0.85rem; }
+  .record { text-align: right; font-size: 0.9rem; color: var(--muted); }
+  .record b { color: var(--ink); font-size: 1.05rem; }
+  .dots { margin-top: 4px; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-left: 3px; }
+  .dot-w { background: var(--accent); }
+  .dot-l { background: transparent; border: 2px solid var(--loss); width: 6px; height: 6px; }
+  h2 {
+    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;
+    color: var(--muted); margin: 44px 0 14px;
+  }
+  .pick-card {
+    border: 1px solid var(--line); border-left: 4px solid var(--accent);
+    background: #fff; padding: 18px 22px; margin-bottom: 14px;
+    display: grid; grid-template-columns: 1fr auto; gap: 6px 24px;
+  }
+  .matchup { font-size: 1.25rem; font-weight: 700; margin: 0; }
+  .vs { color: var(--muted); font-weight: 400; font-size: 0.95rem; }
+  .kickoff { font-size: 0.8rem; color: var(--muted); }
+  .reco { text-align: right; }
+  .outcome { font-weight: 600; font-size: 0.95rem; }
+  .conf { font-size: 2.1rem; font-weight: 800; line-height: 1.05; }
+  .conf small { font-size: 0.7rem; font-weight: 400; color: var(--muted); }
+  .low-edge {
+    display: inline-block; margin-top: 4px; padding: 2px 8px;
+    border: 1px solid var(--loss); color: var(--loss);
+    font-size: 0.72rem; border-radius: 3px;
+  }
+  .factors { grid-column: 1 / -1; display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    border: 1px solid var(--line); border-radius: 999px;
+    font-size: 0.74rem; padding: 3px 11px; color: var(--muted); background: var(--paper);
+  }
+  .chip b { color: var(--ink); }
+  .chip-muted { opacity: 0.6; }
+  .chip-moved { border-style: dashed; }
+  .stale-note { grid-column: 1 / -1; font-size: 0.72rem; color: var(--muted); }
+  .rest-day { color: var(--muted); border: 1px dashed var(--line); padding: 20px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; background: #fff; }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); }
+  th { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+  td.num { font-variant-numeric: tabular-nums; }
+  .grade { font-weight: 700; }
+  .grade-win { color: var(--accent); }
+  .grade-loss { color: var(--loss); }
+  .grade-void, .grade-nopick { color: var(--muted); }
+  .proof a { color: var(--muted); }
+  .convention { font-size: 0.75rem; color: var(--muted); margin-top: 10px; }
+  footer {
+    margin-top: 56px; border-top: 1px solid var(--line); padding-top: 16px;
+    font-size: 0.72rem; color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <div class="wordmark">PITCH<em>LEDGER</em> WC26</div>
+    <div class="tagline">Model picks. Publicly graded. Every match.</div>
+  </div>
+  <div class="record">
+    Track record: <b>no graded picks yet</b>
+    <div class="dots"></div>
+  </div>
+</header>
+
+<main>
+<section aria-labelledby="picks-heading">
+  <h2 id="picks-heading">Today's Picks — 2026-06-12</h2>
+  
+  <article class="pick-card">
+    <div>
+      <h3 class="matchup">United States <span class="vs">vs</span> Paraguay</h3>
+      <div class="kickoff">03:00 CEST · 2026-06-12 (ET match day)</div>
+    </div>
+    <div class="reco">
+      <div class="outcome">PICK: Draw</div>
+      <div class="conf">26%<small> model confidence</small></div>
+      <div class="low-edge">low edge — consider skip</div>
+    </div>
+    
+    <div class="factors">
+      <span class="chip">1 <b>37%</b> · X <b>26%</b> · 2 <b>37%</b></span>
+      <span class="chip">Elo gap <b>+0</b></span>
+      <span class="chip">market <b>30%</b> at pick</span>
+      
+    </div>
+    
+  </article>
+</section>
+
+<section aria-labelledby="ledger-heading">
+  <h2 id="ledger-heading">Pick Ledger — every match, graded</h2>
+  <table>
+    <thead>
+      <tr><th>Date</th><th>Match</th><th>Pick</th><th>Conf.</th><th>Result</th><th>Grade</th><th>Proof</th></tr>
+    </thead>
+    <tbody>
+
+    <tr>
+      <td>2026-06-12</td>
+      <td>United States – Paraguay</td>
+      <td>Draw</td>
+      <td class="num">26%</td>
+      <td class="num">—</td>
+      <td class="grade grade-pending">PENDING</td>
+      <td class="proof">—</td>
+    </tr>
+    </tbody>
+  </table>
+  <p class="convention">Grading: 90 minutes + injury time (knockout ties level after 90 grade as draw).
+  VOID (postponed/abandoned) and NO-PICK rows are shown but excluded from the hit-rate.
+  Picks and "low edge" labels are frozen at pick time and never edited — each row links to the
+  git commit that published it. Model: Elo + Davidson draw model; methodology in the repo.</p>
+</section>
+</main>
+
+<footer>
+  18+ only. Statistical model outputs, not financial advice. Gambling can be addictive — play
+  responsibly: <a href="https://www.bzga.de">bzga.de</a> · <a href="https://www.begambleaware.org">begambleaware.org</a>.
+  This site takes no bets and handles no money.
+  <br>Ratings as of 2026-06-13 · generated 2026-06-12T22:02:47.414Z · commit uncommi
+</footer>
+</body>
+</html>

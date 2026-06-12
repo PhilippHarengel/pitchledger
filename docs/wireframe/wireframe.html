@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe — WC26 Pick Ledger</title>
+<!-- ROUGH WIREFRAME, intentionally unstyled aesthetic: system fonts, gray borders, no color.
+     Purpose: validate layout + information hierarchy, not visual design. -->
+<style>
+  :root {
+    --ink: #2a2a2a;
+    --line: #b9b9b9;
+    --muted: #777;
+    --paper: #fcfcfa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    max-width: 960px;
+    margin-inline: auto;
+    padding: 0 24px 48px;
+  }
+  .sketch-note {
+    font-size: 11px;
+    color: var(--muted);
+    border: 1px dashed var(--line);
+    padding: 4px 8px;
+    margin: 12px 0;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid var(--ink);
+    padding: 20px 0 12px;
+  }
+  .wordmark { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; }
+  .record-strip { font-size: 13px; color: var(--muted); }
+  .record-strip b { color: var(--ink); font-size: 15px; }
+  .dots { letter-spacing: 2px; font-size: 12px; }
+  h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    margin: 36px 0 12px;
+  }
+  /* Pick cards: hierarchy = matchup > recommendation+confidence > reasoning chips */
+  .pick-card {
+    border: 1px solid var(--line);
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px 24px;
+  }
+  .matchup { font-size: 18px; font-weight: 700; }
+  .kickoff { font-size: 12px; color: var(--muted); }
+  .reco { text-align: right; }
+  .reco .outcome { font-size: 14px; font-weight: 600; }
+  .reco .conf { font-size: 30px; font-weight: 800; line-height: 1; }
+  .reco .conf small { font-size: 12px; font-weight: 400; color: var(--muted); }
+  .factors { grid-column: 1 / -1; display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 11px;
+    padding: 3px 10px;
+    color: var(--muted);
+  }
+  .chip b { color: var(--ink); }
+  /* Ledger: honest grading, losses as visible as wins */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  th { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+  .grade { font-weight: 700; }
+  .grade.loss { text-decoration: underline; } /* wireframe stand-in for color */
+  footer {
+    margin-top: 48px;
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="wordmark">PITCHLEDGER ▒ WC26</div>
+    <div class="kickoff">Model picks. Publicly graded. Every match.</div>
+  </div>
+  <div class="record-strip">
+    Track record: <b>23 picks · 14 hits · 61%</b><br>
+    <span class="dots">●●○●●○●●●○●●○●●●○●●●●○●</span>
+  </div>
+</header>
+
+<div class="sketch-note">WIREFRAME — header carries the trust signal (graded record) before any pick is shown. That ordering is the whole product thesis.</div>
+
+<h2>Today's Picks — Saturday, June 13</h2>
+
+<div class="pick-card">
+  <div>
+    <div class="matchup">🇩🇪 Germany vs Scotland 🏴</div>
+    <div class="kickoff">18:00 CEST · Group E · MetLife Stadium</div>
+  </div>
+  <div class="reco">
+    <div class="outcome">PICK: Germany win</div>
+    <div class="conf">68<small>% model confidence</small></div>
+  </div>
+  <div class="factors">
+    <span class="chip">Elo gap <b>+212</b></span>
+    <span class="chip">Form (5) <b>WWWDW vs LDWLD</b></span>
+    <span class="chip">xG trend <b>2.1 vs 0.8</b></span>
+    <span class="chip">Market odds <b>1.45</b> → implied 69%</span>
+  </div>
+</div>
+
+<div class="pick-card">
+  <div>
+    <div class="matchup">🇦🇷 Argentina vs Mexico 🇲🇽</div>
+    <div class="kickoff">21:00 CEST · Group A · Azteca</div>
+  </div>
+  <div class="reco">
+    <div class="outcome">PICK: Draw — low edge, consider skip</div>
+    <div class="conf">41<small>% model confidence</small></div>
+  </div>
+  <div class="factors">
+    <span class="chip">Elo gap <b>+38</b></span>
+    <span class="chip">Home crowd factor <b>MEX +0.2 xG</b></span>
+    <span class="chip">Draw rate similar pairings <b>34%</b></span>
+  </div>
+</div>
+
+<div class="sketch-note">Low-confidence picks say so out loud ("consider skip"). Honesty &gt; volume — differentiator vs tipster sites.</div>
+
+<h2>Pick Ledger — every pick, graded</h2>
+
+<table>
+  <tr><th>Date</th><th>Match</th><th>Pick</th><th>Conf.</th><th>Result</th><th>Grade</th></tr>
+  <tr><td>Jun 12</td><td>USA vs Wales</td><td>USA win</td><td>61%</td><td>2–1</td><td class="grade">WIN</td></tr>
+  <tr><td>Jun 12</td><td>Spain vs Morocco</td><td>Spain win</td><td>72%</td><td>1–1</td><td class="grade loss">LOSS</td></tr>
+  <tr><td>Jun 11</td><td>Mexico vs Honduras</td><td>Mexico win</td><td>66%</td><td>3–0</td><td class="grade">WIN</td></tr>
+  <tr><td colspan="6" style="color:#777">… full ledger + git-commit proof link per pick ↗</td></tr>
+</table>
+
+<footer>
+  18+ only. These are statistical model outputs, not financial advice. Gambling can be addictive — play responsibly. Help: bzga.de / begambleaware.org. This site takes no bets and handles no money.
+</footer>
+
+</body>
+</html>
