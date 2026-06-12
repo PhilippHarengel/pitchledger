@@ -47,6 +47,8 @@ jobs:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           REPO_URL: ${{ github.server_url }}/${{ github.repository }}
         run: npm run daily
+      - name: Record build SHA (the page embeds the SHA at build time, i.e. pre-commit)
+        run: echo "BUILD_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
       - name: Commit and push (rebase guards against the snapshot writer)
         run: |
           git config user.name "pitchledger-bot"
@@ -58,7 +60,7 @@ jobs:
           git push origin main
       - name: Freshness check (SHA embedded in live page, retries over ~10 min)
         run: |
-          SHA=$(git rev-parse HEAD)
+          SHA="$BUILD_SHA"
           PAGE_URL="${{ vars.PAGES_URL }}"
           if [ -z "$PAGE_URL" ]; then echo "PAGES_URL var not set — skipping check"; exit 0; fi
           for i in $(seq 1 10); do
