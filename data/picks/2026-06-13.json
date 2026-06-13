@@ -1,26 +1,5 @@
 [
   {
-    "matchId": "537345",
-    "date": "2026-06-12",
-    "kickoffUtc": "2026-06-13T01:00:00Z",
-    "home": "United States",
-    "away": "Paraguay",
-    "pick": "DRAW",
-    "confidence": 0.25925925925925924,
-    "probabilities": {
-      "home": 0.37037037037037035,
-      "draw": 0.25925925925925924,
-      "away": 0.37037037037037035
-    },
-    "eloDiff": 0,
-    "marketAtPick": 0.30109955010509126,
-    "lowEdge": true,
-    "grade": "LOSS",
-    "result": "4–1",
-    "pickCommit": null,
-    "ratingsAsOf": null
-  },
-  {
     "matchId": "537334",
     "date": "2026-06-13",
     "kickoffUtc": "2026-06-13T19:00:00Z",
