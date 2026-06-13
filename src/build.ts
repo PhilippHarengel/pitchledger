@@ -182,6 +182,7 @@ export function renderPage(data: PageData): string {
   .chip-moved { border-style: dashed; }
   .stale-note { grid-column: 1 / -1; font-size: 0.72rem; color: var(--muted); }
   .rest-day { color: var(--muted); border: 1px dashed var(--line); padding: 20px; }
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   table { width: 100%; border-collapse: collapse; font-size: 0.85rem; background: #fff; }
   th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); }
   th { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
@@ -195,6 +196,10 @@ export function renderPage(data: PageData): string {
   footer {
     margin-top: 56px; border-top: 1px solid var(--line); padding-top: 16px;
     font-size: 0.72rem; color: var(--muted);
+  }
+  @media (max-width: 640px) {
+    .pick-card { grid-template-columns: 1fr; }
+    .reco { text-align: left; }
   }
 </style>
 </head>
@@ -218,6 +223,7 @@ export function renderPage(data: PageData): string {
 
 <section aria-labelledby="ledger-heading">
   <h2 id="ledger-heading">Pick Ledger — every match, graded</h2>
+  <div class="table-wrap">
   <table>
     <thead>
       <tr><th>Date</th><th>Match</th><th>Pick</th><th>Conf.</th><th>Result</th><th>Grade</th><th>Proof</th></tr>
@@ -226,6 +232,7 @@ export function renderPage(data: PageData): string {
 ${rows}
     </tbody>
   </table>
+  </div>
   <p class="convention">Grading: 90 minutes + injury time (knockout ties level after 90 grade as draw).
   VOID (postponed/abandoned) and NO-PICK rows are shown but excluded from the hit-rate.
   Picks and "low edge" labels are frozen at pick time and never edited — each row links to the
