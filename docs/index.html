@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-commit="dcd7b40014ef2dc9b04b2dbe7e7fb80ae125a9cf">
+<html lang="en" data-commit="9110dbfb3814813f5846d9815ee3235d20f279da">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,6 +69,7 @@
   .chip-moved { border-style: dashed; }
   .stale-note { grid-column: 1 / -1; font-size: 0.72rem; color: var(--muted); }
   .rest-day { color: var(--muted); border: 1px dashed var(--line); padding: 20px; }
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   table { width: 100%; border-collapse: collapse; font-size: 0.85rem; background: #fff; }
   th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); }
   th { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
@@ -82,6 +83,10 @@
   footer {
     margin-top: 56px; border-top: 1px solid var(--line); padding-top: 16px;
     font-size: 0.72rem; color: var(--muted);
+  }
+  @media (max-width: 640px) {
+    .pick-card { grid-template-columns: 1fr; }
+    .reco { text-align: left; }
   }
 </style>
 </head>
@@ -164,6 +169,7 @@
 
 <section aria-labelledby="ledger-heading">
   <h2 id="ledger-heading">Pick Ledger — every match, graded</h2>
+  <div class="table-wrap">
   <table>
     <thead>
       <tr><th>Date</th><th>Match</th><th>Pick</th><th>Conf.</th><th>Result</th><th>Grade</th><th>Proof</th></tr>
@@ -211,6 +217,7 @@
     </tr>
     </tbody>
   </table>
+  </div>
   <p class="convention">Grading: 90 minutes + injury time (knockout ties level after 90 grade as draw).
   VOID (postponed/abandoned) and NO-PICK rows are shown but excluded from the hit-rate.
   Picks and "low edge" labels are frozen at pick time and never edited — each row links to the
@@ -222,7 +229,7 @@
   18+ only. Statistical model outputs, not financial advice. Gambling can be addictive — play
   responsibly: <a href="https://www.bzga.de">bzga.de</a> · <a href="https://www.begambleaware.org">begambleaware.org</a>.
   This site takes no bets and handles no money.
-  <br>Ratings as of 2026-06-13 · generated 2026-06-13T10:19:43.327Z · commit dcd7b40
+  <br>Ratings as of 2026-06-13 · generated 2026-06-13T11:22:55.231Z · commit 9110dbf
 </footer>
 </body>
 </html>
