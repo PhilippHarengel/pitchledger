@@ -1,0 +1,86 @@
+[
+  {
+    "matchId": "537351",
+    "date": "2026-06-14",
+    "kickoffUtc": "2026-06-14T17:00:00Z",
+    "home": "Germany",
+    "away": "Curaçao",
+    "pick": "HOME",
+    "confidence": 0.7276633297281601,
+    "probabilities": {
+      "home": 0.7276633297281601,
+      "draw": 0.18072928456928605,
+      "away": 0.09160738570255389
+    },
+    "eloDiff": 360,
+    "marketAtPick": 0.2627324171382377,
+    "lowEdge": false,
+    "grade": "PENDING",
+    "result": null,
+    "pickCommit": null,
+    "ratingsAsOf": null
+  },
+  {
+    "matchId": "537357",
+    "date": "2026-06-14",
+    "kickoffUtc": "2026-06-14T20:00:00Z",
+    "home": "Netherlands",
+    "away": "Japan",
+    "pick": "HOME",
+    "confidence": 0.45725006607586155,
+    "probabilities": {
+      "home": 0.45725006607586155,
+      "draw": 0.2542446464695201,
+      "away": 0.28850528745461845
+    },
+    "eloDiff": 80,
+    "marketAtPick": 0.1620486216351474,
+    "lowEdge": false,
+    "grade": "PENDING",
+    "result": null,
+    "pickCommit": null,
+    "ratingsAsOf": null
+  },
+  {
+    "matchId": "537352",
+    "date": "2026-06-14",
+    "kickoffUtc": "2026-06-14T23:00:00Z",
+    "home": "Ivory Coast",
+    "away": "Ecuador",
+    "pick": "AWAY",
+    "confidence": 0.4899757895459771,
+    "probabilities": {
+      "home": 0.2601205247197558,
+      "draw": 0.24990368573426708,
+      "away": 0.4899757895459771
+    },
+    "eloDiff": -110,
+    "marketAtPick": 0.3728256809368489,
+    "lowEdge": false,
+    "grade": "PENDING",
+    "result": null,
+    "pickCommit": null,
+    "ratingsAsOf": null
+  },
+  {
+    "matchId": "537358",
+    "date": "2026-06-14",
+    "kickoffUtc": "2026-06-15T02:00:00Z",
+    "home": "Sweden",
+    "away": "Tunisia",
+    "pick": "DRAW",
+    "confidence": 0.2579913376650035,
+    "probabilities": {
+      "home": 0.4135300598716902,
+      "draw": 0.2579913376650035,
+      "away": 0.3284786024633062
+    },
+    "eloDiff": 40,
+    "marketAtPick": 0.7308292690213536,
+    "lowEdge": true,
+    "grade": "PENDING",
+    "result": null,
+    "pickCommit": null,
+    "ratingsAsOf": null
+  }
+]
