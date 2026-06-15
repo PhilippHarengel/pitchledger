@@ -6,6 +6,7 @@ const entry: LedgerEntry = {
   matchId: '1', date: '2026-06-13', kickoffUtc: '2026-06-13T16:00:00Z', home: 'Germany', away: 'Scotland',
   pick: 'HOME', confidence: 0.61, probabilities: { home: 0.61, draw: 0.22, away: 0.17 },
   eloDiff: 212, marketAtPick: 0.66, lowEdge: false, grade: 'PENDING',
+  scorePick: '2-1', scoreConfidence: 0.12, scoreMarketAtPick: 0.08, scoreLowEdge: false, scoreGrade: 'PENDING',
   result: null, pickCommit: 'abc1234def', ratingsAsOf: null,
 };
 
@@ -101,5 +102,33 @@ describe('renderPage', () => {
     });
     expect(xss).not.toContain('<script>alert(1)');
     expect(xss).toContain('&lt;script&gt;');
+  });
+
+  test('renders the score pick on the card, score chip, and ledger Score columns', () => {
+    expect(html).toContain('Score: <b>2-1</b>');
+    expect(html).toContain('score market <b>8%</b> at pick');
+    expect(html).toContain('<th>Score</th>');
+    expect(html).toContain('<th>Score grade</th>');
+  });
+
+  test('second track-record line reflects scoreLedgerStats', () => {
+    const withScores = renderPage({
+      ...base,
+      ledger: [
+        { ...entry, matchId: 's1', scoreGrade: 'WIN' },
+        { ...entry, matchId: 's2', scoreGrade: 'LOSS' },
+        { ...entry, matchId: 's3', scoreGrade: 'WIN' },
+        { ...entry, matchId: 's4', scoreGrade: 'PENDING' },
+      ],
+    });
+    expect(withScores).toContain('Correct score: 3 graded · 2 hits · 67%');
+  });
+
+  test('missing score odds shows a dash chip, never a fake number', () => {
+    const noScoreMarket = renderPage({
+      ...base,
+      cards: [{ ...card, entry: { ...entry, scoreMarketAtPick: null } }],
+    });
+    expect(noScoreMarket).toContain('score market —');
   });
 });

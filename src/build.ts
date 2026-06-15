@@ -1,5 +1,5 @@
-import type { LedgerEntry } from './ledger.js';
-import { ledgerStats } from './ledger.js';
+import type { Grade, LedgerEntry } from './ledger.js';
+import { ledgerStats, scoreLedgerStats } from './ledger.js';
 
 /**
  * Static page renderer. One self-contained HTML file, zero runtime JS.
@@ -37,6 +37,11 @@ function pickLabel(e: LedgerEntry): string {
   return '—';
 }
 
+// Legacy ledger rows (written before the score market shipped) carry no score
+// fields — default them so the page renders without a migration.
+const scorePickOf = (e: LedgerEntry): string | null => e.scorePick ?? null;
+const scoreGradeOf = (e: LedgerEntry): Grade => e.scoreGrade ?? 'NO-PICK';
+
 function chips(card: TodayCard): string {
   const e = card.entry;
   if (!e.probabilities) return '';
@@ -49,11 +54,16 @@ function chips(card: TodayCard): string {
     card.marketNow !== null
       ? `<span class="chip chip-moved">market now <b>${pct(card.marketNow.probability)}</b> <small>as of ${esc(card.marketNow.asOf)}</small></span>`
       : '';
+  const scoreMarket =
+    e.scoreMarketAtPick != null
+      ? `<span class="chip">score market <b>${pct(e.scoreMarketAtPick)}</b> at pick</span>`
+      : `<span class="chip chip-muted">score market —</span>`;
   return `
     <div class="factors">
       <span class="chip">1 <b>${pct(p.home)}</b> · X <b>${pct(p.draw)}</b> · 2 <b>${pct(p.away)}</b></span>
       <span class="chip">Elo gap <b>${e.eloDiff === null ? '—' : (e.eloDiff >= 0 ? '+' : '') + Math.round(e.eloDiff)}</b></span>
       ${market}
+      ${scoreMarket}
       ${marketNow}
     </div>`;
 }
@@ -61,6 +71,15 @@ function chips(card: TodayCard): string {
 function card(c: TodayCard): string {
   const e = c.entry;
   const lowEdge = e.lowEdge === true ? `<div class="low-edge">low edge — consider skip</div>` : '';
+  const scorePick = scorePickOf(e);
+  const scoreLine =
+    scorePick !== null
+      ? `<div class="score-line">Score: <b>${esc(scorePick)}</b>${
+          e.scoreConfidence !== null ? ` <small>${pct(e.scoreConfidence)}</small>` : ''
+        }</div>`
+      : '';
+  const scoreLowEdge =
+    e.scoreLowEdge === true ? `<div class="low-edge">score: low edge — consider skip</div>` : '';
   const stale =
     e.ratingsAsOf !== null ? `<div class="stale-note">ratings as of ${esc(e.ratingsAsOf)}</div>` : '';
   return `
@@ -72,7 +91,9 @@ function card(c: TodayCard): string {
     <div class="reco">
       <div class="outcome">PICK: ${esc(pickLabel(e))}</div>
       <div class="conf">${e.confidence === null ? '—' : pct(e.confidence)}<small> model confidence</small></div>
+      ${scoreLine}
       ${lowEdge}
+      ${scoreLowEdge}
     </div>
     ${chips(c)}
     ${stale}
@@ -84,6 +105,8 @@ function ledgerRow(e: LedgerEntry, repoUrl: string): string {
     e.pickCommit !== null
       ? `<a href="${esc(repoUrl)}/commit/${esc(e.pickCommit)}">${esc(e.pickCommit.slice(0, 7))}</a>`
       : '—';
+  const scorePick = scorePickOf(e);
+  const scoreGrade = scoreGradeOf(e);
   return `
     <tr>
       <td>${esc(e.date)}</td>
@@ -92,6 +115,8 @@ function ledgerRow(e: LedgerEntry, repoUrl: string): string {
       <td class="num">${e.confidence === null ? '—' : pct(e.confidence)}</td>
       <td class="num">${e.result === null ? '—' : esc(e.result)}</td>
       <td class="grade grade-${e.grade.toLowerCase().replace(/[^a-z]/g, '')}">${e.grade}</td>
+      <td class="num">${scorePick === null ? '—' : esc(scorePick)}</td>
+      <td class="grade grade-${scoreGrade.toLowerCase().replace(/[^a-z]/g, '')}">${scoreGrade}</td>
       <td class="proof">${proof}</td>
     </tr>`;
 }
@@ -105,6 +130,11 @@ export function renderPage(data: PageData): string {
   const dots = stats.dots
     .map((d) => `<span class="dot ${d === 'W' ? 'dot-w' : 'dot-l'}"></span>`)
     .join('');
+  const scoreStats = scoreLedgerStats(data.ledger);
+  const scoreRecord =
+    scoreStats.hitRate === null
+      ? 'no graded scores yet'
+      : `${scoreStats.graded} graded · ${scoreStats.wins} hits · ${pct(scoreStats.hitRate)}`;
   const cards =
     data.cards.length > 0
       ? data.cards.map(card).join('\n')
@@ -147,6 +177,7 @@ export function renderPage(data: PageData): string {
   .tagline { color: var(--muted); font-size: 0.85rem; }
   .record { text-align: right; font-size: 0.9rem; color: var(--muted); }
   .record b { color: var(--ink); font-size: 1.05rem; }
+  .record-score { margin-top: 4px; font-size: 0.78rem; color: var(--muted); }
   .dots { margin-top: 4px; }
   .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-left: 3px; }
   .dot-w { background: var(--accent); }
@@ -167,6 +198,9 @@ export function renderPage(data: PageData): string {
   .outcome { font-weight: 600; font-size: 0.95rem; }
   .conf { font-size: 2.1rem; font-weight: 800; line-height: 1.05; }
   .conf small { font-size: 0.7rem; font-weight: 400; color: var(--muted); }
+  .score-line { margin-top: 6px; font-size: 0.95rem; font-weight: 600; }
+  .score-line b { font-variant-numeric: tabular-nums; }
+  .score-line small { font-size: 0.72rem; font-weight: 400; color: var(--muted); }
   .low-edge {
     display: inline-block; margin-top: 4px; padding: 2px 8px;
     border: 1px solid var(--loss); color: var(--loss);
@@ -212,6 +246,7 @@ export function renderPage(data: PageData): string {
   <div class="record">
     Track record: <b>${esc(record)}</b>
     <div class="dots">${dots}</div>
+    <div class="record-score">Correct score: ${esc(scoreRecord)}</div>
   </div>
 </header>
 
@@ -226,7 +261,7 @@ export function renderPage(data: PageData): string {
   <div class="table-wrap">
   <table>
     <thead>
-      <tr><th>Date</th><th>Match</th><th>Pick</th><th>Conf.</th><th>Result</th><th>Grade</th><th>Proof</th></tr>
+      <tr><th>Date</th><th>Match</th><th>Pick</th><th>Conf.</th><th>Result</th><th>Grade</th><th>Score</th><th>Score grade</th><th>Proof</th></tr>
     </thead>
     <tbody>
 ${rows}
@@ -234,9 +269,11 @@ ${rows}
   </table>
   </div>
   <p class="convention">Grading: 90 minutes + injury time (knockout ties level after 90 grade as draw).
+  The correct-score pick grades on the exact 90-minute scoreline (7+ on either side → "7+/other");
+  it is a separate market with its own hit-rate and never affects the 1X2 record.
   VOID (postponed/abandoned) and NO-PICK rows are shown but excluded from the hit-rate.
   Picks and "low edge" labels are frozen at pick time and never edited — each row links to the
-  git commit that published it. Model: Elo + Davidson draw model; methodology in the repo.</p>
+  git commit that published it. Model: Elo + Davidson; correct score via Dixon-Coles.</p>
 </section>
 </main>
 

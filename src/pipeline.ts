@@ -1,13 +1,14 @@
 import { LAUNCH_DATE, PATHS, PIPELINE_TZ } from './config.js';
 import type { EloRatings, MatchResult90 } from './elo.js';
 import { applyResults } from './elo.js';
-import { devig } from './devig.js';
+import { devig, devigMultiway } from './devig.js';
 import { isLowEdge, makePick } from './model.js';
+import { isScoreLowEdge, makeScorePick } from './goals.js';
 import type { Grade, LedgerEntry } from './ledger.js';
 import { gradeEntry } from './grade.js';
 import type { FinalResult } from './grade.js';
 import type { WcMatch } from './clients/footballData.js';
-import type { MatchOdds } from './clients/oddsApi.js';
+import type { MatchOdds, ScoreOdds } from './clients/oddsApi.js';
 
 /**
  * Pure pipeline steps (no IO) — run.ts wires them to fs/network/git.
@@ -105,6 +106,10 @@ export interface OddsLookup {
   find(home: string, away: string): MatchOdds | undefined;
 }
 
+export interface ScoreOddsLookup {
+  find(home: string, away: string): ScoreOdds | undefined;
+}
+
 /**
  * Team-name aliases between The Odds API and football-data.org. Both sides
  * normalize through this table; misses degrade to "no odds" — never wrong odds.
@@ -132,6 +137,12 @@ export function buildOddsLookup(odds: readonly MatchOdds[]): OddsLookup {
   return { find: (h, a) => map.get(key(h, a)) };
 }
 
+export function buildScoreOddsLookup(odds: readonly ScoreOdds[]): ScoreOddsLookup {
+  const key = (h: string, a: string) => `${normalizeTeam(h)}|${normalizeTeam(a)}`;
+  const map = new Map(odds.map((o) => [key(o.home, o.away), o]));
+  return { find: (h, a) => map.get(key(h, a)) };
+}
+
 export function buildTodayEntries(
   fixtures: readonly WcMatch[],
   elo: EloRatings,
@@ -139,6 +150,7 @@ export function buildTodayEntries(
   day: string,
   ratingsStale: boolean,
   now: Date,
+  scoreOdds: ScoreOddsLookup = buildScoreOddsLookup([]),
 ): readonly LedgerEntry[] {
   return fixtures
     .filter((m) => m.utcDate.length > 0 && pipelineDay(new Date(m.utcDate)) === day && day >= LAUNCH_DATE)
@@ -161,6 +173,13 @@ export function buildTodayEntries(
         : pick.outcome === 'HOME' ? market.home
         : pick.outcome === 'AWAY' ? market.away
         : market.draw;
+      // Correct-score market, parallel to 1X2. The edge layer no-ops on null
+      // odds (model-only path) — score market missing ⇒ chip "—", label null.
+      const scorePick = makeScorePick(eloHome, eloAway);
+      const matchScoreOdds = scoreOdds.find(m.home, m.away);
+      const scoreMarket = matchScoreOdds ? devigMultiway(matchScoreOdds.scores) : null;
+      const scoreMarketAtPick = scoreMarket ? scoreMarket.get(scorePick.score) ?? null : null;
+      const scoreLowEdge = scoreMarketAtPick === null ? null : isScoreLowEdge(scorePick, scoreMarketAtPick);
       return {
         matchId: m.id,
         date: day,
@@ -174,6 +193,11 @@ export function buildTodayEntries(
         marketAtPick,
         lowEdge: isLowEdge(pick, marketAtPick),
         grade: 'PENDING' as Grade,
+        scorePick: scorePick.score,
+        scoreConfidence: scorePick.probability,
+        scoreMarketAtPick,
+        scoreLowEdge,
+        scoreGrade: 'PENDING' as Grade,
         result: null,
         pickCommit: null,
         ratingsAsOf: ratingsStale ? elo.asOf : null,
@@ -195,6 +219,11 @@ function noPickEntry(m: WcMatch, day: string, _reason: string): LedgerEntry {
     marketAtPick: null,
     lowEdge: null,
     grade: 'NO-PICK',
+    scorePick: null,
+    scoreConfidence: null,
+    scoreMarketAtPick: null,
+    scoreLowEdge: null,
+    scoreGrade: 'NO-PICK',
     result: null,
     pickCommit: null,
     ratingsAsOf: null,

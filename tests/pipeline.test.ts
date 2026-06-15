@@ -1,10 +1,11 @@
 import { describe, expect, test } from 'vitest';
 import {
-  buildOddsLookup, buildTodayEntries, gradeFinished, mergeEntries, pipelineDay,
+  buildMissedEntries, buildOddsLookup, buildScoreOddsLookup, buildTodayEntries, gradeFinished, mergeEntries, pipelineDay,
 } from '../src/pipeline.js';
 import type { EloRatings } from '../src/elo.js';
 import type { LedgerEntry } from '../src/ledger.js';
 import type { WcMatch } from '../src/clients/footballData.js';
+import type { ScoreOdds } from '../src/clients/oddsApi.js';
 import type { FinalResult } from '../src/grade.js';
 
 const elo: EloRatings = { asOf: '2026-06-13', ratings: { Germany: 2000, Scotland: 1800 } };
@@ -19,6 +20,7 @@ const pending: LedgerEntry = {
   matchId: '1', date: '2026-06-13', kickoffUtc: '2026-06-13T16:00:00Z', home: 'Germany', away: 'Scotland',
   pick: 'HOME', confidence: 0.6, probabilities: { home: 0.6, draw: 0.22, away: 0.18 },
   eloDiff: 200, marketAtPick: null, lowEdge: false, grade: 'PENDING',
+  scorePick: '2-1', scoreConfidence: 0.12, scoreMarketAtPick: null, scoreLowEdge: null, scoreGrade: 'PENDING',
   result: null, pickCommit: null, ratingsAsOf: null,
 };
 
@@ -125,6 +127,62 @@ describe('buildTodayEntries', () => {
     ]);
     const entries = buildTodayEntries([match({})], elo, lookup, '2026-06-13', false, beforeKickoff);
     expect(entries[0]?.marketAtPick).toBeGreaterThan(0.5);
+  });
+
+  test('carries a frozen score pick alongside the 1X2 pick (model-only path)', () => {
+    const entries = buildTodayEntries([match({})], elo, noOdds, '2026-06-13', false, beforeKickoff);
+    const e = entries[0];
+    expect(e?.scorePick).not.toBeNull();
+    expect(e?.scoreConfidence).toBeGreaterThan(0);
+    expect(e?.scoreGrade).toBe('PENDING');
+    // No score odds → chip "—" and the low-edge label is suppressed (criterion 9).
+    expect(e?.scoreMarketAtPick).toBeNull();
+    expect(e?.scoreLowEdge).toBeNull();
+  });
+
+  test('score odds attach the de-vigged market prob of the picked score', () => {
+    const scoreLookup = buildScoreOddsLookup([
+      {
+        home: 'Germany',
+        away: 'Scotland',
+        scores: new Map<string, number>([
+          ['1-1', 6.5],
+          ['1-0', 7.0],
+          ['2-1', 8.0],
+          ['7+/other', 4.0],
+        ]),
+      } satisfies ScoreOdds,
+    ]);
+    const entries = buildTodayEntries([match({})], elo, noOdds, '2026-06-13', false, beforeKickoff, scoreLookup);
+    const e = entries[0];
+    expect(e?.scorePick).toBe('1-1'); // even-ish match, placeholder supremacy 0
+    expect(e?.scoreMarketAtPick).toBeGreaterThan(0);
+    expect(e?.scoreLowEdge).toBe(false); // placeholder thresholds → no-op (not null: odds present)
+  });
+
+  test('unknown team rating → score fields null / NO-PICK too', () => {
+    const entries = buildTodayEntries([match({ home: 'Atlantis' })], elo, noOdds, '2026-06-13', false, beforeKickoff);
+    expect(entries[0]?.scorePick).toBeNull();
+    expect(entries[0]?.scoreGrade).toBe('NO-PICK');
+  });
+});
+
+describe('score grading + missed rows', () => {
+  test('gradeFinished sets scoreGrade on a pending score pick', () => {
+    const entry: LedgerEntry = { ...pending, scorePick: '2-0', scoreGrade: 'PENDING' };
+    const results = new Map<string, FinalResult>([
+      ['1', { status: 'FINISHED', homeGoals90: 2, awayGoals90: 0 }],
+    ]);
+    const [graded] = gradeFinished([entry], results);
+    expect(graded?.grade).toBe('WIN');
+    expect(graded?.scoreGrade).toBe('WIN');
+  });
+
+  test('buildMissedEntries sets score fields to null / NO-PICK', () => {
+    const missed = { ...match({ status: 'FINISHED', homeGoals90: 1, awayGoals90: 1 }), utcDate: '2026-06-13T16:00:00Z' };
+    const rows = buildMissedEntries([missed], new Set(), new Date('2026-06-12T21:30:00Z'));
+    expect(rows[0]?.scorePick).toBeNull();
+    expect(rows[0]?.scoreGrade).toBe('NO-PICK');
   });
 });
 

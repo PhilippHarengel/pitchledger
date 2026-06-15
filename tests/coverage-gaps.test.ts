@@ -18,6 +18,7 @@ const pending: LedgerEntry = {
   matchId: '1', date: '2026-06-13', kickoffUtc: '2026-06-13T16:00:00Z', home: 'Germany', away: 'Scotland',
   pick: 'HOME', confidence: 0.6, probabilities: { home: 0.6, draw: 0.22, away: 0.18 },
   eloDiff: 200, marketAtPick: null, lowEdge: false, grade: 'PENDING',
+  scorePick: '2-1', scoreConfidence: 0.12, scoreMarketAtPick: null, scoreLowEdge: null, scoreGrade: 'PENDING',
   result: null, pickCommit: null, ratingsAsOf: null,
 };
 

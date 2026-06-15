@@ -21,6 +21,36 @@ export const HONESTY = {
   MARKET_GAP_MIN_PP: 3,
 } as const;
 
+/**
+ * Correct-score (Dixon-Coles) model parameters. All five are calibrated by
+ * backtest/backtest.ts against 2022 scorelines — never hand-tuned (same rule
+ * as DRAW_NU). The placeholders below let the model run; they are not final.
+ */
+export const SCORE = {
+  /** Explicit grid cells 0..6 per side, then a single 7+/Other cell. */
+  GRID_MAX: 6,
+  /** Expected total goals in an even match. */
+  GOALS_BASELINE: 2.6, // CALIBRATED
+  /** Neutral-venue home goal advantage (likely ~0 for WC). */
+  HOME_GOAL_ADV: 0.0, // CALIBRATED
+  /** Dixon-Coles low-score dependence ρ (negative lifts draw/low-score mass). */
+  DIXON_COLES_RHO: -0.05, // CALIBRATED
+  /** Elo difference → goal-supremacy slope (goals per Elo point). */
+  SUPREMACY_PER_ELO: 0.0, // CALIBRATED
+} as const;
+
+/**
+ * Correct-score honesty thresholds. Frozen into each pick at pick time, same
+ * as HONESTY for 1X2. Calibrated by the backtest; placeholders below make the
+ * label a no-op until calibration fills them in.
+ */
+export const SCORE_HONESTY = {
+  /** Score-pick model prob below this → low edge. */
+  CONFIDENCE_FLOOR: 0.0, // CALIBRATED
+  /** |model − market| below this gap (percentage points) → low edge. */
+  MARKET_GAP_MIN_PP: 0.0, // CALIBRATED
+} as const;
+
 export const PATHS = {
   ELO: 'data/elo.json',
   ELO_FOLD_LOG: 'data/elo-fold-log.json',
