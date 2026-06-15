@@ -8,6 +8,7 @@
     "daily": "tsx src/run.ts daily",
     "snapshot": "tsx src/run.ts snapshot",
     "backfill": "tsx scripts/backfill.ts",
+    "probe:score-odds": "tsx scripts/probe-score-odds.ts",
     "backtest": "tsx backtest/backtest.ts",
     "build:site": "tsx src/run.ts build-only",
     "test": "vitest run",

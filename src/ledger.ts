@@ -26,6 +26,12 @@ export interface LedgerEntry {
   /** Frozen at pick time (D13). Never recomputed. */
   readonly lowEdge: boolean | null;
   readonly grade: Grade;
+  /** Correct-score market (parallel to 1X2, all additive + nullable). */
+  readonly scorePick: string | null; // "2-1" | "7+/other" | null
+  readonly scoreConfidence: number | null; // model prob of scorePick
+  readonly scoreMarketAtPick: number | null; // de-vigged market prob; null = no odds
+  readonly scoreLowEdge: boolean | null; // frozen at pick time; null when no odds
+  readonly scoreGrade: Grade; // exact-score grade, independent of the 1X2 grade
   readonly result: string | null;
   /** Commit SHA that introduced the pick (proof link). */
   readonly pickCommit: string | null;
@@ -50,5 +56,22 @@ export function ledgerStats(entries: readonly LedgerEntry[]): LedgerStats {
     wins,
     hitRate: graded === 0 ? null : wins / graded,
     dots: gradedEntries.map((e) => (e.grade === 'WIN' ? 'W' : 'L')),
+  };
+}
+
+/**
+ * Exact-score hit-rate over the score market's OWN WIN/LOSS rows — kept
+ * separate so the audited 1X2 record stays untouched. Legacy rows written
+ * before this market shipped have no scoreGrade and are excluded.
+ */
+export function scoreLedgerStats(entries: readonly LedgerEntry[]): LedgerStats {
+  const gradedEntries = entries.filter((e) => e.scoreGrade === 'WIN' || e.scoreGrade === 'LOSS');
+  const wins = gradedEntries.filter((e) => e.scoreGrade === 'WIN').length;
+  const graded = gradedEntries.length;
+  return {
+    graded,
+    wins,
+    hitRate: graded === 0 ? null : wins / graded,
+    dots: gradedEntries.map((e) => (e.scoreGrade === 'WIN' ? 'W' : 'L')),
   };
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-commit="54acc4e66919feabd10f963daff352d1fa7efec4">
+<html lang="en" data-commit="128d59b747e77a13e8974f1c90dacad4df0a5402">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,6 +34,7 @@
   .tagline { color: var(--muted); font-size: 0.85rem; }
   .record { text-align: right; font-size: 0.9rem; color: var(--muted); }
   .record b { color: var(--ink); font-size: 1.05rem; }
+  .record-score { margin-top: 4px; font-size: 0.78rem; color: var(--muted); }
   .dots { margin-top: 4px; }
   .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-left: 3px; }
   .dot-w { background: var(--accent); }
@@ -54,6 +55,9 @@
   .outcome { font-weight: 600; font-size: 0.95rem; }
   .conf { font-size: 2.1rem; font-weight: 800; line-height: 1.05; }
   .conf small { font-size: 0.7rem; font-weight: 400; color: var(--muted); }
+  .score-line { margin-top: 6px; font-size: 0.95rem; font-weight: 600; }
+  .score-line b { font-variant-numeric: tabular-nums; }
+  .score-line small { font-size: 0.72rem; font-weight: 400; color: var(--muted); }
   .low-edge {
     display: inline-block; margin-top: 4px; padding: 2px 8px;
     border: 1px solid var(--loss); color: var(--loss);
@@ -99,6 +103,7 @@
   <div class="record">
     Track record: <b>8 graded · 2 hits · 25%</b>
     <div class="dots"><span class="dot dot-l"></span><span class="dot dot-l"></span><span class="dot dot-l"></span><span class="dot dot-w"></span><span class="dot dot-w"></span><span class="dot dot-l"></span><span class="dot dot-l"></span><span class="dot dot-l"></span></div>
+    <div class="record-score">Correct score: no graded scores yet</div>
   </div>
 </header>
 
@@ -115,12 +120,15 @@
       <div class="outcome">PICK: Spain win</div>
       <div class="conf">84%<small> model confidence</small></div>
       
+      
+      
     </div>
     
     <div class="factors">
       <span class="chip">1 <b>84%</b> · X <b>12%</b> · 2 <b>4%</b></span>
       <span class="chip">Elo gap <b>+550</b></span>
       <span class="chip">market <b>91%</b> at pick</span>
+      <span class="chip chip-muted">score market —</span>
       
     </div>
     
@@ -135,12 +143,15 @@
       <div class="outcome">PICK: Belgium win</div>
       <div class="conf">51%<small> model confidence</small></div>
       
+      
+      
     </div>
     
     <div class="factors">
       <span class="chip">1 <b>51%</b> · X <b>25%</b> · 2 <b>24%</b></span>
       <span class="chip">Elo gap <b>+130</b></span>
       <span class="chip">market <b>61%</b> at pick</span>
+      <span class="chip chip-muted">score market —</span>
       <span class="chip chip-moved">market now <b>64%</b> <small>as of 18:59</small></span>
     </div>
     
@@ -154,13 +165,16 @@
     <div class="reco">
       <div class="outcome">PICK: Uruguay win</div>
       <div class="conf">64%<small> model confidence</small></div>
+      
       <div class="low-edge">low edge — consider skip</div>
+      
     </div>
     
     <div class="factors">
       <span class="chip">1 <b>14%</b> · X <b>21%</b> · 2 <b>64%</b></span>
       <span class="chip">Elo gap <b>-260</b></span>
       <span class="chip">market <b>67%</b> at pick</span>
+      <span class="chip chip-muted">score market —</span>
       <span class="chip chip-moved">market now <b>67%</b> <small>as of 18:59</small></span>
     </div>
     
@@ -175,12 +189,15 @@
       <div class="outcome">PICK: Iran win</div>
       <div class="conf">59%<small> model confidence</small></div>
       
+      
+      
     </div>
     
     <div class="factors">
       <span class="chip">1 <b>59%</b> · X <b>23%</b> · 2 <b>18%</b></span>
       <span class="chip">Elo gap <b>+205</b></span>
       <span class="chip">market <b>53%</b> at pick</span>
+      <span class="chip chip-muted">score market —</span>
       <span class="chip chip-moved">market now <b>54%</b> <small>as of 18:59</small></span>
     </div>
     
@@ -192,7 +209,7 @@
   <div class="table-wrap">
   <table>
     <thead>
-      <tr><th>Date</th><th>Match</th><th>Pick</th><th>Conf.</th><th>Result</th><th>Grade</th><th>Proof</th></tr>
+      <tr><th>Date</th><th>Match</th><th>Pick</th><th>Conf.</th><th>Result</th><th>Grade</th><th>Score</th><th>Score grade</th><th>Proof</th></tr>
     </thead>
     <tbody>
 
@@ -203,6 +220,8 @@
       <td class="num">59%</td>
       <td class="num">—</td>
       <td class="grade grade-pending">PENDING</td>
+      <td class="num">—</td>
+      <td class="grade grade-nopick">NO-PICK</td>
       <td class="proof">—</td>
     </tr>
 
@@ -213,6 +232,8 @@
       <td class="num">64%</td>
       <td class="num">—</td>
       <td class="grade grade-pending">PENDING</td>
+      <td class="num">—</td>
+      <td class="grade grade-nopick">NO-PICK</td>
       <td class="proof">—</td>
     </tr>
 
@@ -223,6 +244,8 @@
       <td class="num">51%</td>
       <td class="num">—</td>
       <td class="grade grade-pending">PENDING</td>
+      <td class="num">—</td>
+      <td class="grade grade-nopick">NO-PICK</td>
       <td class="proof">—</td>
     </tr>
 
@@ -233,6 +256,8 @@
       <td class="num">84%</td>
       <td class="num">—</td>
       <td class="grade grade-pending">PENDING</td>
+      <td class="num">—</td>
+      <td class="grade grade-nopick">NO-PICK</td>
       <td class="proof">—</td>
     </tr>
 
@@ -243,6 +268,8 @@
       <td class="num">26%</td>
       <td class="num">5–1</td>
       <td class="grade grade-loss">LOSS</td>
+      <td class="num">—</td>
+      <td class="grade grade-nopick">NO-PICK</td>
       <td class="proof">—</td>
     </tr>
 
@@ -253,6 +280,8 @@
       <td class="num">49%</td>
       <td class="num">1–0</td>
       <td class="grade grade-loss">LOSS</td>
+      <td class="num">—</td>
+      <td class="grade grade-nopick">NO-PICK</td>
       <td class="proof">—</td>
     </tr>
 
@@ -263,6 +292,8 @@
       <td class="num">46%</td>
       <td class="num">2–2</td>
       <td class="grade grade-loss">LOSS</td>
+      <td class="num">—</td>
+      <td class="grade grade-nopick">NO-PICK</td>
       <td class="proof">—</td>
     </tr>
 
@@ -273,6 +304,8 @@
       <td class="num">73%</td>
       <td class="num">7–1</td>
       <td class="grade grade-win">WIN</td>
+      <td class="num">—</td>
+      <td class="grade grade-nopick">NO-PICK</td>
       <td class="proof">—</td>
     </tr>
 
@@ -282,6 +315,8 @@
       <td>—</td>
       <td class="num">—</td>
       <td class="num">2–0</td>
+      <td class="grade grade-nopick">NO-PICK</td>
+      <td class="num">—</td>
       <td class="grade grade-nopick">NO-PICK</td>
       <td class="proof">—</td>
     </tr>
@@ -293,6 +328,8 @@
       <td class="num">58%</td>
       <td class="num">0–1</td>
       <td class="grade grade-win">WIN</td>
+      <td class="num">—</td>
+      <td class="grade grade-nopick">NO-PICK</td>
       <td class="proof">—</td>
     </tr>
 
@@ -303,6 +340,8 @@
       <td class="num">49%</td>
       <td class="num">1–1</td>
       <td class="grade grade-loss">LOSS</td>
+      <td class="num">—</td>
+      <td class="grade grade-nopick">NO-PICK</td>
       <td class="proof">—</td>
     </tr>
 
@@ -313,6 +352,8 @@
       <td class="num">54%</td>
       <td class="num">1–1</td>
       <td class="grade grade-loss">LOSS</td>
+      <td class="num">—</td>
+      <td class="grade grade-nopick">NO-PICK</td>
       <td class="proof">—</td>
     </tr>
 
@@ -323,15 +364,19 @@
       <td class="num">26%</td>
       <td class="num">4–1</td>
       <td class="grade grade-loss">LOSS</td>
+      <td class="num">—</td>
+      <td class="grade grade-nopick">NO-PICK</td>
       <td class="proof">—</td>
     </tr>
     </tbody>
   </table>
   </div>
   <p class="convention">Grading: 90 minutes + injury time (knockout ties level after 90 grade as draw).
+  The correct-score pick grades on the exact 90-minute scoreline (7+ on either side → "7+/other");
+  it is a separate market with its own hit-rate and never affects the 1X2 record.
   VOID (postponed/abandoned) and NO-PICK rows are shown but excluded from the hit-rate.
   Picks and "low edge" labels are frozen at pick time and never edited — each row links to the
-  git commit that published it. Model: Elo + Davidson draw model; methodology in the repo.</p>
+  git commit that published it. Model: Elo + Davidson; correct score via Dixon-Coles.</p>
 </section>
 </main>
 
@@ -339,7 +384,7 @@
   18+ only. Statistical model outputs, not financial advice. Gambling can be addictive — play
   responsibly: <a href="https://www.bzga.de">bzga.de</a> · <a href="https://www.begambleaware.org">begambleaware.org</a>.
   This site takes no bets and handles no money.
-  <br>Ratings as of 2026-06-15 · generated 2026-06-15T18:59:12.123Z · commit 54acc4e
+  <br>Ratings as of 2026-06-15 · generated 2026-06-15T19:30:51.669Z · commit 128d59b
 </footer>
 </body>
 </html>

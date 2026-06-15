@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import { parseMatchesResponse } from '../src/clients/footballData.js';
-import { parseOddsResponse } from '../src/clients/oddsApi.js';
+import { parseOddsResponse, parseScoreOddsResponse } from '../src/clients/oddsApi.js';
 
 const validMatch = {
   id: 101,
@@ -102,5 +102,50 @@ describe('odds API parsing', () => {
 
   test('non-array body throws loudly', () => {
     expect(() => parseOddsResponse({ data: [] })).toThrow(/shape unexpected/);
+  });
+});
+
+const validScoreEvent = {
+  home_team: 'Germany',
+  away_team: 'Scotland',
+  commence_time: '2026-06-13T16:00:00Z',
+  bookmakers: [
+    {
+      markets: [
+        {
+          key: 'correct_score',
+          outcomes: [
+            { name: '2 - 1', price: 8.0 }, // spaced format normalizes to "2-1"
+            { name: '1-1', price: 6.5 },
+            { name: '8 - 0', price: 250 }, // out-of-grid → 7+/other
+            { name: 'Any Other Score', price: 4.0 }, // non-numeric → 7+/other
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+describe('correct-score odds parsing', () => {
+  test('parses + normalizes outcome names and folds out-of-grid into 7+/other', () => {
+    const r = parseScoreOddsResponse([validScoreEvent]);
+    expect(r.odds).toHaveLength(1);
+    const o = r.odds[0];
+    expect(o?.home).toBe('Germany');
+    expect(o?.scores.has('2-1')).toBe(true); // "2 - 1" normalized
+    expect(o?.scores.has('1-1')).toBe(true);
+    expect(o?.scores.has('7+/other')).toBe(true); // "8 - 0" + "Any Other Score" merged
+    expect(o?.scores.size).toBe(3);
+  });
+
+  test('event without a correct_score market is skipped, others survive', () => {
+    const noMarket = { ...validScoreEvent, home_team: 'Spain', bookmakers: [{ markets: [{ key: 'h2h', outcomes: [] }] }] };
+    const r = parseScoreOddsResponse([validScoreEvent, noMarket]);
+    expect(r.odds).toHaveLength(1);
+    expect(r.skipped[0]?.reason).toMatch(/no correct_score market/);
+  });
+
+  test('non-array body throws loudly', () => {
+    expect(() => parseScoreOddsResponse({ data: [] })).toThrow(/shape unexpected/);
   });
 });

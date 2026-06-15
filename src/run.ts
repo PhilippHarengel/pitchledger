@@ -4,10 +4,10 @@ import type { EloRatings } from './elo.js';
 import type { LedgerEntry } from './ledger.js';
 import { readJson, readJsonOr, writeJson, writeText } from './io.js';
 import { fetchWcMatches, type WcMatch } from './clients/footballData.js';
-import { fetchWcOdds } from './clients/oddsApi.js';
+import { fetchWcOdds, fetchWcScoreOdds } from './clients/oddsApi.js';
 import { devig } from './devig.js';
 import {
-  buildMissedEntries, buildOddsLookup, buildTodayEntries, foldResults, gradeFinished, mergeEntries, pipelineDay,
+  buildMissedEntries, buildOddsLookup, buildScoreOddsLookup, buildTodayEntries, foldResults, gradeFinished, mergeEntries, pipelineDay,
 } from './pipeline.js';
 import { renderPage, type TodayCard } from './build.js';
 import type { FinalResult } from './grade.js';
@@ -121,6 +121,7 @@ async function daily(): Promise<void> {
 
   // 3) Picks for today.
   let oddsLookup = buildOddsLookup([]);
+  let scoreOddsLookup = buildScoreOddsLookup([]);
   if (oddsKey) {
     try {
       const odds = await fetchWcOdds(oddsKey);
@@ -129,8 +130,17 @@ async function daily(): Promise<void> {
     } catch (err) {
       console.error('[daily] odds fetch failed — picks publish without market column:', err);
     }
+    // Correct-score odds are a separate (possibly absent) market — degrade to
+    // the model-only score path on any failure, never block the 1X2 picks.
+    try {
+      const scoreOdds = await fetchWcScoreOdds(oddsKey);
+      for (const s of scoreOdds.skipped) console.warn(`[daily] skipped score odds: ${s.reason}`);
+      scoreOddsLookup = buildScoreOddsLookup([...scoreOdds.odds]);
+    } catch (err) {
+      console.error('[daily] score odds fetch failed — score picks publish model-only:', err);
+    }
   }
-  const fresh = buildTodayEntries(fetched.matches, elo, oddsLookup, day, ratingsStale, now);
+  const fresh = buildTodayEntries(fetched.matches, elo, oddsLookup, day, ratingsStale, now, scoreOddsLookup);
   const ledgerAfter = mergeEntries(graded, fresh);
   writeJson(PATHS.LEDGER, ledgerAfter);
   writeJson(`${PATHS.PICKS_DIR}/${day}.json`, fresh);
