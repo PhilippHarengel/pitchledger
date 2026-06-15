@@ -13,7 +13,7 @@
       "away": 0.09160738570255389
     },
     "eloDiff": 360,
-    "marketAtPick": 0.2627324171382377,
+    "marketAtPick": 0.9364820846905537,
     "lowEdge": false,
     "grade": "PENDING",
     "result": null,
@@ -34,8 +34,8 @@
       "away": 0.28850528745461845
     },
     "eloDiff": 80,
-    "marketAtPick": 0.1620486216351474,
-    "lowEdge": false,
+    "marketAtPick": 0.46940338435391993,
+    "lowEdge": true,
     "grade": "PENDING",
     "result": null,
     "pickCommit": null,
@@ -48,11 +48,11 @@
     "home": "Ivory Coast",
     "away": "Ecuador",
     "pick": "AWAY",
-    "confidence": 0.4899757895459771,
+    "confidence": 0.4899757895459772,
     "probabilities": {
-      "home": 0.2601205247197558,
+      "home": 0.2601205247197557,
       "draw": 0.24990368573426708,
-      "away": 0.4899757895459771
+      "away": 0.4899757895459772
     },
     "eloDiff": -110,
     "marketAtPick": 0.3728256809368489,
@@ -76,7 +76,7 @@
       "away": 0.3284786024633062
     },
     "eloDiff": 40,
-    "marketAtPick": 0.7308292690213536,
+    "marketAtPick": 0.2778187177597642,
     "lowEdge": true,
     "grade": "PENDING",
     "result": null,
