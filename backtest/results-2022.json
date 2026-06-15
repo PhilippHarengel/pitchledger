@@ -1,0 +1,48 @@
+{
+  "oneX2": {
+    "config": {
+      "nu": 0.7,
+      "drawPickThreshold": 0.42,
+      "confidenceFloor": 0.45
+    },
+    "evaluated": 64,
+    "accuracy": 0.5,
+    "drawPickRate": 0.171875,
+    "actualDrawRate": 0.234375,
+    "skipLabelRate": 0.28125,
+    "exampleEvenMatch": {
+      "home": 0.37037037037037035,
+      "draw": 0.25925925925925924,
+      "away": 0.37037037037037035
+    }
+  },
+  "score": {
+    "evaluated": 64,
+    "calibratedParams": {
+      "goalsBaseline": 2.4,
+      "homeGoalAdv": 0.1,
+      "dixonColesRho": -0.15,
+      "supremacyPerElo": 0.005
+    },
+    "exactScoreAccuracy": 0.171875,
+    "baselineAlways11": 0.078125,
+    "baselineAlways10": 0.109375,
+    "beatsBothBaselines": true,
+    "meanModalProb": 0.1503424134691792,
+    "recommendedConfidenceFloor": 0.14274957559087992,
+    "scoreSkipRate": 0.390625,
+    "recommendedConfig": {
+      "SCORE": {
+        "GRID_MAX": 6,
+        "GOALS_BASELINE": 2.4,
+        "HOME_GOAL_ADV": 0.1,
+        "DIXON_COLES_RHO": -0.15,
+        "SUPREMACY_PER_ELO": 0.005
+      },
+      "SCORE_HONESTY": {
+        "CONFIDENCE_FLOOR": 0.14274957559087992,
+        "MARKET_GAP_MIN_PP": 0
+      }
+    }
+  }
+}

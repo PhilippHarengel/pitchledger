@@ -1,0 +1,422 @@
+{
+  "ratings": {
+    "Argentina": 2150.9,
+    "Australia": 1829.8,
+    "Belgium": 1982.7,
+    "Brazil": 2168.1,
+    "Cameroon": 1710.6,
+    "Canada": 1827.8,
+    "Costa Rica": 1863.3,
+    "Croatia": 2011.1,
+    "Denmark": 2014,
+    "Ecuador": 1859.2,
+    "England": 1996.7,
+    "France": 2002.2,
+    "Germany": 2010.5,
+    "Ghana": 1674.9,
+    "Iran": 1871.7,
+    "Japan": 1875.6,
+    "Mexico": 1802.5,
+    "Morocco": 1860.7,
+    "Netherlands": 2107.1,
+    "Poland": 1908.3,
+    "Portugal": 2011.5,
+    "Qatar": 1809.4,
+    "Saudi Arabia": 1746.7,
+    "Senegal": 1751.7,
+    "Serbia": 1948.6,
+    "South Korea": 1906,
+    "Spain": 2081.7,
+    "Switzerland": 1940,
+    "Tunisia": 1821.9,
+    "United States": 1857,
+    "Uruguay": 1956.7,
+    "Wales": 1835.9
+  },
+  "matches": [
+    {
+      "home": "Qatar",
+      "away": "Ecuador",
+      "homeGoals90": 0,
+      "awayGoals90": 2
+    },
+    {
+      "home": "Senegal",
+      "away": "Netherlands",
+      "homeGoals90": 0,
+      "awayGoals90": 2
+    },
+    {
+      "home": "England",
+      "away": "Iran",
+      "homeGoals90": 6,
+      "awayGoals90": 2
+    },
+    {
+      "home": "United States",
+      "away": "Wales",
+      "homeGoals90": 1,
+      "awayGoals90": 1
+    },
+    {
+      "home": "Argentina",
+      "away": "Saudi Arabia",
+      "homeGoals90": 1,
+      "awayGoals90": 2
+    },
+    {
+      "home": "Mexico",
+      "away": "Poland",
+      "homeGoals90": 0,
+      "awayGoals90": 0
+    },
+    {
+      "home": "Denmark",
+      "away": "Tunisia",
+      "homeGoals90": 0,
+      "awayGoals90": 0
+    },
+    {
+      "home": "France",
+      "away": "Australia",
+      "homeGoals90": 4,
+      "awayGoals90": 1
+    },
+    {
+      "home": "Germany",
+      "away": "Japan",
+      "homeGoals90": 1,
+      "awayGoals90": 2
+    },
+    {
+      "home": "Spain",
+      "away": "Costa Rica",
+      "homeGoals90": 7,
+      "awayGoals90": 0
+    },
+    {
+      "home": "Morocco",
+      "away": "Croatia",
+      "homeGoals90": 0,
+      "awayGoals90": 0
+    },
+    {
+      "home": "Belgium",
+      "away": "Canada",
+      "homeGoals90": 1,
+      "awayGoals90": 0
+    },
+    {
+      "home": "Switzerland",
+      "away": "Cameroon",
+      "homeGoals90": 1,
+      "awayGoals90": 0
+    },
+    {
+      "home": "Brazil",
+      "away": "Serbia",
+      "homeGoals90": 2,
+      "awayGoals90": 0
+    },
+    {
+      "home": "Uruguay",
+      "away": "South Korea",
+      "homeGoals90": 0,
+      "awayGoals90": 0
+    },
+    {
+      "home": "Portugal",
+      "away": "Ghana",
+      "homeGoals90": 3,
+      "awayGoals90": 2
+    },
+    {
+      "home": "Qatar",
+      "away": "Senegal",
+      "homeGoals90": 1,
+      "awayGoals90": 3
+    },
+    {
+      "home": "Netherlands",
+      "away": "Ecuador",
+      "homeGoals90": 1,
+      "awayGoals90": 1
+    },
+    {
+      "home": "Wales",
+      "away": "Iran",
+      "homeGoals90": 0,
+      "awayGoals90": 2
+    },
+    {
+      "home": "England",
+      "away": "United States",
+      "homeGoals90": 0,
+      "awayGoals90": 0
+    },
+    {
+      "home": "Poland",
+      "away": "Saudi Arabia",
+      "homeGoals90": 2,
+      "awayGoals90": 0
+    },
+    {
+      "home": "Argentina",
+      "away": "Mexico",
+      "homeGoals90": 2,
+      "awayGoals90": 0
+    },
+    {
+      "home": "Tunisia",
+      "away": "Australia",
+      "homeGoals90": 0,
+      "awayGoals90": 1
+    },
+    {
+      "home": "France",
+      "away": "Denmark",
+      "homeGoals90": 2,
+      "awayGoals90": 1
+    },
+    {
+      "home": "Japan",
+      "away": "Costa Rica",
+      "homeGoals90": 0,
+      "awayGoals90": 1
+    },
+    {
+      "home": "Spain",
+      "away": "Germany",
+      "homeGoals90": 1,
+      "awayGoals90": 1
+    },
+    {
+      "home": "Belgium",
+      "away": "Morocco",
+      "homeGoals90": 0,
+      "awayGoals90": 2
+    },
+    {
+      "home": "Croatia",
+      "away": "Canada",
+      "homeGoals90": 4,
+      "awayGoals90": 1
+    },
+    {
+      "home": "Cameroon",
+      "away": "Serbia",
+      "homeGoals90": 3,
+      "awayGoals90": 3
+    },
+    {
+      "home": "Brazil",
+      "away": "Switzerland",
+      "homeGoals90": 1,
+      "awayGoals90": 0
+    },
+    {
+      "home": "South Korea",
+      "away": "Ghana",
+      "homeGoals90": 2,
+      "awayGoals90": 3
+    },
+    {
+      "home": "Portugal",
+      "away": "Uruguay",
+      "homeGoals90": 2,
+      "awayGoals90": 0
+    },
+    {
+      "home": "Ecuador",
+      "away": "Senegal",
+      "homeGoals90": 1,
+      "awayGoals90": 2
+    },
+    {
+      "home": "Qatar",
+      "away": "Netherlands",
+      "homeGoals90": 0,
+      "awayGoals90": 2
+    },
+    {
+      "home": "Wales",
+      "away": "England",
+      "homeGoals90": 0,
+      "awayGoals90": 3
+    },
+    {
+      "home": "Iran",
+      "away": "United States",
+      "homeGoals90": 0,
+      "awayGoals90": 1
+    },
+    {
+      "home": "Poland",
+      "away": "Argentina",
+      "homeGoals90": 0,
+      "awayGoals90": 2
+    },
+    {
+      "home": "Saudi Arabia",
+      "away": "Mexico",
+      "homeGoals90": 1,
+      "awayGoals90": 2
+    },
+    {
+      "home": "Australia",
+      "away": "Denmark",
+      "homeGoals90": 1,
+      "awayGoals90": 0
+    },
+    {
+      "home": "Tunisia",
+      "away": "France",
+      "homeGoals90": 1,
+      "awayGoals90": 0
+    },
+    {
+      "home": "Japan",
+      "away": "Spain",
+      "homeGoals90": 2,
+      "awayGoals90": 1
+    },
+    {
+      "home": "Costa Rica",
+      "away": "Germany",
+      "homeGoals90": 2,
+      "awayGoals90": 4
+    },
+    {
+      "home": "Croatia",
+      "away": "Belgium",
+      "homeGoals90": 0,
+      "awayGoals90": 0
+    },
+    {
+      "home": "Canada",
+      "away": "Morocco",
+      "homeGoals90": 1,
+      "awayGoals90": 2
+    },
+    {
+      "home": "Serbia",
+      "away": "Switzerland",
+      "homeGoals90": 2,
+      "awayGoals90": 3
+    },
+    {
+      "home": "Cameroon",
+      "away": "Brazil",
+      "homeGoals90": 1,
+      "awayGoals90": 0
+    },
+    {
+      "home": "Ghana",
+      "away": "Uruguay",
+      "homeGoals90": 0,
+      "awayGoals90": 2
+    },
+    {
+      "home": "South Korea",
+      "away": "Portugal",
+      "homeGoals90": 2,
+      "awayGoals90": 1
+    },
+    {
+      "home": "Netherlands",
+      "away": "United States",
+      "homeGoals90": 3,
+      "awayGoals90": 1
+    },
+    {
+      "home": "Argentina",
+      "away": "Australia",
+      "homeGoals90": 2,
+      "awayGoals90": 1
+    },
+    {
+      "home": "France",
+      "away": "Poland",
+      "homeGoals90": 3,
+      "awayGoals90": 1
+    },
+    {
+      "home": "England",
+      "away": "Senegal",
+      "homeGoals90": 3,
+      "awayGoals90": 0
+    },
+    {
+      "home": "Japan",
+      "away": "Croatia",
+      "homeGoals90": 1,
+      "awayGoals90": 1
+    },
+    {
+      "home": "Brazil",
+      "away": "South Korea",
+      "homeGoals90": 4,
+      "awayGoals90": 1
+    },
+    {
+      "home": "Morocco",
+      "away": "Spain",
+      "homeGoals90": 0,
+      "awayGoals90": 0
+    },
+    {
+      "home": "Portugal",
+      "away": "Switzerland",
+      "homeGoals90": 6,
+      "awayGoals90": 1
+    },
+    {
+      "home": "Croatia",
+      "away": "Brazil",
+      "homeGoals90": 1,
+      "awayGoals90": 1
+    },
+    {
+      "home": "Netherlands",
+      "away": "Argentina",
+      "homeGoals90": 2,
+      "awayGoals90": 2
+    },
+    {
+      "home": "Morocco",
+      "away": "Portugal",
+      "homeGoals90": 1,
+      "awayGoals90": 0
+    },
+    {
+      "home": "England",
+      "away": "France",
+      "homeGoals90": 1,
+      "awayGoals90": 2
+    },
+    {
+      "home": "Argentina",
+      "away": "Croatia",
+      "homeGoals90": 3,
+      "awayGoals90": 0
+    },
+    {
+      "home": "France",
+      "away": "Morocco",
+      "homeGoals90": 2,
+      "awayGoals90": 0
+    },
+    {
+      "home": "Croatia",
+      "away": "Morocco",
+      "homeGoals90": 2,
+      "awayGoals90": 1
+    },
+    {
+      "home": "Argentina",
+      "away": "France",
+      "homeGoals90": 3,
+      "awayGoals90": 3
+    }
+  ]
+}
