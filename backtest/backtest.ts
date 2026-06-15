@@ -76,10 +76,13 @@ for (const m of rated) {
 const evaluated = rated.length;
 
 // ── Correct-score market: grid search the Dixon-Coles params ───────────────
-const GOALS_BASELINE_GRID = [2.2, 2.4, 2.6, 2.8, 3.0, 3.2];
+const GOALS_BASELINE_GRID = [1.6, 1.8, 2.0, 2.2, 2.4, 2.6, 2.8, 3.0, 3.2];
 const HOME_GOAL_ADV_GRID = [0.0, 0.1, 0.2, 0.3];
-const RHO_GRID = [-0.18, -0.15, -0.12, -0.1, -0.08, -0.05, 0.0];
-const SUPREMACY_GRID = [0.0005, 0.001, 0.0015, 0.002, 0.0025];
+// Dixon-Coles rho is only well-behaved for small magnitudes; capping at -0.15
+// keeps the low-score correction valid (beyond ~-0.2 it overfits / can go
+// negative on a 64-match sample).
+const RHO_GRID = [-0.15, -0.12, -0.1, -0.08, -0.05, -0.03, 0.0];
+const SUPREMACY_GRID = [0.0005, 0.001, 0.0015, 0.002, 0.0025, 0.003, 0.0035, 0.004, 0.005];
 
 function scoreAccuracy(params: ScoreParams): { accuracy: number; meanModalProb: number } {
   let hits = 0;

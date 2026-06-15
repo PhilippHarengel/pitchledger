@@ -155,9 +155,12 @@ describe('buildTodayEntries', () => {
     ]);
     const entries = buildTodayEntries([match({})], elo, noOdds, '2026-06-13', false, beforeKickoff, scoreLookup);
     const e = entries[0];
-    expect(e?.scorePick).toBe('1-1'); // even-ish match, placeholder supremacy 0
+    // Modal score under the calibrated params for this even-ish fixture is 1-0,
+    // which is present in the odds map, so the market prob attaches.
+    expect(e?.scorePick).toBe('1-0');
     expect(e?.scoreMarketAtPick).toBeGreaterThan(0);
-    expect(e?.scoreLowEdge).toBe(false); // placeholder thresholds → no-op (not null: odds present)
+    // Odds present → the label is computed, never null (true/false both valid).
+    expect(typeof e?.scoreLowEdge).toBe('boolean');
   });
 
   test('unknown team rating → score fields null / NO-PICK too', () => {

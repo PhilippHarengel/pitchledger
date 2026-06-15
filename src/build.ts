@@ -76,7 +76,7 @@ function card(c: TodayCard): string {
     scorePick !== null
       ? `<div class="score-line">Score: <b>${esc(scorePick)}</b>${
           e.scoreConfidence !== null ? ` <small>${pct(e.scoreConfidence)}</small>` : ''
-        }</div>`
+        } <span class="score-exp">experimental</span></div>`
       : '';
   const scoreLowEdge =
     e.scoreLowEdge === true ? `<div class="low-edge">score: low edge — consider skip</div>` : '';
@@ -201,6 +201,11 @@ export function renderPage(data: PageData): string {
   .score-line { margin-top: 6px; font-size: 0.95rem; font-weight: 600; }
   .score-line b { font-variant-numeric: tabular-nums; }
   .score-line small { font-size: 0.72rem; font-weight: 400; color: var(--muted); }
+  .score-exp {
+    font-size: 0.62rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+    color: var(--muted); border: 1px solid var(--line); border-radius: 3px; padding: 1px 5px;
+    margin-left: 4px; vertical-align: middle;
+  }
   .low-edge {
     display: inline-block; margin-top: 4px; padding: 2px 8px;
     border: 1px solid var(--loss); color: var(--loss);
@@ -271,6 +276,8 @@ ${rows}
   <p class="convention">Grading: 90 minutes + injury time (knockout ties level after 90 grade as draw).
   The correct-score pick grades on the exact 90-minute scoreline (7+ on either side → "7+/other");
   it is a separate market with its own hit-rate and never affects the 1X2 record.
+  The correct-score market is <b>experimental</b>: its model is calibrated on a single
+  64-match tournament (2022) and is not yet edge-validated — the live ledger is its real test.
   VOID (postponed/abandoned) and NO-PICK rows are shown but excluded from the hit-rate.
   Picks and "low edge" labels are frozen at pick time and never edited — each row links to the
   git commit that published it. Model: Elo + Davidson; correct score via Dixon-Coles.</p>

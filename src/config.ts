@@ -22,33 +22,41 @@ export const HONESTY = {
 } as const;
 
 /**
- * Correct-score (Dixon-Coles) model parameters. All five are calibrated by
- * backtest/backtest.ts against 2022 scorelines — never hand-tuned (same rule
- * as DRAW_NU). The placeholders below let the model run; they are not final.
+ * Correct-score (Dixon-Coles) model parameters, calibrated by
+ * backtest/backtest.ts (grid search) against the 2022 World Cup (64 matches;
+ * ratings + scorelines self-sourced via scripts/build-backtest-data.ts).
+ *
+ * EXPERIMENTAL: at the calibrated values exact-score accuracy is 17.2% (11/64)
+ * vs a 10.9% always-1-0 baseline — it clears the sanity gate but on a single
+ * 64-match tournament, so treat the score market as not yet edge-validated. rho
+ * is capped at -0.15 (beyond that the search overfits / the correction breaks).
+ * Re-run the backtest and update these when more scoreline history is available.
  */
 export const SCORE = {
   /** Explicit grid cells 0..6 per side, then a single 7+/Other cell. */
   GRID_MAX: 6,
   /** Expected total goals in an even match. */
-  GOALS_BASELINE: 2.6, // CALIBRATED
-  /** Neutral-venue home goal advantage (likely ~0 for WC). */
-  HOME_GOAL_ADV: 0.0, // CALIBRATED
+  GOALS_BASELINE: 2.4,
+  /** Neutral-venue home goal advantage. */
+  HOME_GOAL_ADV: 0.1,
   /** Dixon-Coles low-score dependence ρ (negative lifts draw/low-score mass). */
-  DIXON_COLES_RHO: -0.05, // CALIBRATED
+  DIXON_COLES_RHO: -0.15,
   /** Elo difference → goal-supremacy slope (goals per Elo point). */
-  SUPREMACY_PER_ELO: 0.0, // CALIBRATED
+  SUPREMACY_PER_ELO: 0.005,
 } as const;
 
 /**
  * Correct-score honesty thresholds. Frozen into each pick at pick time, same
- * as HONESTY for 1X2. Calibrated by the backtest; placeholders below make the
- * label a no-op until calibration fills them in.
+ * as HONESTY for 1X2. CONFIDENCE_FLOOR is the backtest's recommended floor (~40th
+ * percentile of modal probs). MARKET_GAP_MIN_PP stays 0: The Odds API does not
+ * serve a correct_score market for this sport (Phase-0 probe, issue #2), so there
+ * is no market probability to gap against — recalibrate if a score odds feed is added.
  */
 export const SCORE_HONESTY = {
   /** Score-pick model prob below this → low edge. */
-  CONFIDENCE_FLOOR: 0.0, // CALIBRATED
+  CONFIDENCE_FLOOR: 0.143,
   /** |model − market| below this gap (percentage points) → low edge. */
-  MARKET_GAP_MIN_PP: 0.0, // CALIBRATED
+  MARKET_GAP_MIN_PP: 0.0,
 } as const;
 
 export const PATHS = {

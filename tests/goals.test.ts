@@ -7,6 +7,7 @@ import {
   type ScoreCell,
   type ScoreParams,
 } from '../src/goals.js';
+import { SCORE } from '../src/config.js';
 
 const sum = (cells: readonly ScoreCell[]): number => cells.reduce((s, c) => s + c.prob, 0);
 const drawMass = (cells: readonly ScoreCell[]): number =>
@@ -59,10 +60,11 @@ describe('makeScorePick', () => {
 });
 
 describe('lambdasFromElo', () => {
-  test('equal ratings → equal rates summing to the baseline', () => {
+  test('equal ratings → rates sum to baseline, split by home advantage', () => {
     const { lambdaHome, lambdaAway } = lambdasFromElo(1900, 1900);
-    expect(lambdaHome).toBeCloseTo(lambdaAway, 12);
-    expect(lambdaHome + lambdaAway).toBeCloseTo(2.6, 12);
+    // Derived from config so the test survives recalibration.
+    expect(lambdaHome + lambdaAway).toBeCloseTo(SCORE.GOALS_BASELINE, 12);
+    expect(lambdaHome - lambdaAway).toBeCloseTo(SCORE.HOME_GOAL_ADV, 12);
   });
 
   test('supremacy shifts rate toward the favourite', () => {
