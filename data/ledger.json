@@ -98,7 +98,8 @@
     "grade": "NO-PICK",
     "result": "2–0",
     "pickCommit": null,
-    "ratingsAsOf": null
+    "ratingsAsOf": null,
+    "scoreGrade": "NO-PICK"
   },
   {
     "matchId": "537351",
@@ -200,10 +201,11 @@
     "eloDiff": 550,
     "marketAtPick": 0.9093575828688766,
     "lowEdge": false,
-    "grade": "PENDING",
-    "result": null,
+    "grade": "LOSS",
+    "result": "0–0",
     "pickCommit": null,
-    "ratingsAsOf": null
+    "ratingsAsOf": null,
+    "scoreGrade": "NO-PICK"
   },
   {
     "matchId": "537363",
@@ -221,10 +223,11 @@
     "eloDiff": 130,
     "marketAtPick": 0.6094440786379456,
     "lowEdge": false,
-    "grade": "PENDING",
-    "result": null,
+    "grade": "LOSS",
+    "result": "1–1",
     "pickCommit": null,
-    "ratingsAsOf": null
+    "ratingsAsOf": null,
+    "scoreGrade": "NO-PICK"
   },
   {
     "matchId": "537370",
@@ -242,10 +245,11 @@
     "eloDiff": -260,
     "marketAtPick": 0.66817725364987,
     "lowEdge": true,
-    "grade": "PENDING",
-    "result": null,
+    "grade": "LOSS",
+    "result": "1–1",
     "pickCommit": null,
-    "ratingsAsOf": null
+    "ratingsAsOf": null,
+    "scoreGrade": "NO-PICK"
   },
   {
     "matchId": "537364",
@@ -263,7 +267,86 @@
     "eloDiff": 205,
     "marketAtPick": 0.5343566177550816,
     "lowEdge": false,
+    "grade": "LOSS",
+    "result": "2–2",
+    "pickCommit": null,
+    "ratingsAsOf": null,
+    "scoreGrade": "NO-PICK"
+  },
+  {
+    "matchId": "537391",
+    "date": "2026-06-16",
+    "kickoffUtc": "2026-06-16T19:00:00Z",
+    "home": "France",
+    "away": "Senegal",
+    "pick": "HOME",
+    "confidence": 0.589876430225595,
+    "probabilities": {
+      "home": 0.589876430225595,
+      "draw": 0.22888065274567282,
+      "away": 0.18124291702873213
+    },
+    "eloDiff": 205,
+    "marketAtPick": 0.1683039371099574,
+    "lowEdge": false,
     "grade": "PENDING",
+    "scorePick": "1-0",
+    "scoreConfidence": 0.14460087387327317,
+    "scoreMarketAtPick": null,
+    "scoreLowEdge": null,
+    "scoreGrade": "PENDING",
+    "result": null,
+    "pickCommit": null,
+    "ratingsAsOf": null
+  },
+  {
+    "matchId": "537392",
+    "date": "2026-06-16",
+    "kickoffUtc": "2026-06-16T22:00:00Z",
+    "home": "Iraq",
+    "away": "Norway",
+    "pick": "AWAY",
+    "confidence": 0.5848409140394931,
+    "probabilities": {
+      "home": 0.18494293572195444,
+      "draw": 0.2302161502385525,
+      "away": 0.5848409140394931
+    },
+    "eloDiff": -200,
+    "marketAtPick": 0.8019858697727708,
+    "lowEdge": false,
+    "grade": "PENDING",
+    "scorePick": "0-1",
+    "scoreConfidence": 0.13284510284818343,
+    "scoreMarketAtPick": null,
+    "scoreLowEdge": null,
+    "scoreGrade": "PENDING",
+    "result": null,
+    "pickCommit": null,
+    "ratingsAsOf": null
+  },
+  {
+    "matchId": "537397",
+    "date": "2026-06-16",
+    "kickoffUtc": "2026-06-17T01:00:00Z",
+    "home": "Argentina",
+    "away": "Algeria",
+    "pick": "HOME",
+    "confidence": 0.7461884453140561,
+    "probabilities": {
+      "home": 0.7461884453140561,
+      "draw": 0.1724632475381088,
+      "away": 0.08134830714783517
+    },
+    "eloDiff": 385,
+    "marketAtPick": 0.19332161687170474,
+    "lowEdge": false,
+    "grade": "PENDING",
+    "scorePick": "2-0",
+    "scoreConfidence": 0.22203927801593784,
+    "scoreMarketAtPick": null,
+    "scoreLowEdge": null,
+    "scoreGrade": "PENDING",
     "result": null,
     "pickCommit": null,
     "ratingsAsOf": null
