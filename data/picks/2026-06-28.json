@@ -1,0 +1,28 @@
+[
+  {
+    "matchId": "537417",
+    "date": "2026-06-28",
+    "kickoffUtc": "2026-06-28T19:00:00Z",
+    "home": "South Africa",
+    "away": "Canada",
+    "pick": "AWAY",
+    "confidence": 0.42332724275976696,
+    "probabilities": {
+      "home": 0.31931139040936274,
+      "draw": 0.2573613668308701,
+      "away": 0.42332724275976696
+    },
+    "eloDiff": -48.98472281589693,
+    "marketAtPick": 0.5866126787295963,
+    "lowEdge": true,
+    "grade": "PENDING",
+    "scorePick": "1-1",
+    "scoreConfidence": 0.14968114657007597,
+    "scoreMarketAtPick": null,
+    "scoreLowEdge": null,
+    "scoreGrade": "PENDING",
+    "result": null,
+    "pickCommit": null,
+    "ratingsAsOf": null
+  }
+]
