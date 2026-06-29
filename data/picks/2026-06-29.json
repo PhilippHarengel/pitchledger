@@ -1,0 +1,80 @@
+[
+  {
+    "matchId": "537423",
+    "date": "2026-06-29",
+    "kickoffUtc": "2026-06-29T17:00:00Z",
+    "home": "Brazil",
+    "away": "Japan",
+    "pick": "HOME",
+    "confidence": 0.48562261389701517,
+    "probabilities": {
+      "home": 0.48562261389701517,
+      "draw": 0.25055509360405975,
+      "away": 0.26382229249892514
+    },
+    "eloDiff": 105.99496496044071,
+    "marketAtPick": 0.5470415967700663,
+    "lowEdge": false,
+    "grade": "PENDING",
+    "scorePick": "1-1",
+    "scoreConfidence": 0.1398780457002395,
+    "scoreMarketAtPick": null,
+    "scoreLowEdge": null,
+    "scoreGrade": "PENDING",
+    "result": null,
+    "pickCommit": null,
+    "ratingsAsOf": null
+  },
+  {
+    "matchId": "537415",
+    "date": "2026-06-29",
+    "kickoffUtc": "2026-06-29T20:30:00Z",
+    "home": "Germany",
+    "away": "Paraguay",
+    "pick": "HOME",
+    "confidence": 0.4975190011205604,
+    "probabilities": {
+      "home": 0.4975190011205604,
+      "draw": 0.24872176971116314,
+      "away": 0.25375922916827637
+    },
+    "eloDiff": 116.95513018369229,
+    "marketAtPick": 0.7164508128961147,
+    "lowEdge": false,
+    "grade": "PENDING",
+    "scorePick": "1-1",
+    "scoreConfidence": 0.13799889532706125,
+    "scoreMarketAtPick": null,
+    "scoreLowEdge": null,
+    "scoreGrade": "PENDING",
+    "result": null,
+    "pickCommit": null,
+    "ratingsAsOf": null
+  },
+  {
+    "matchId": "537418",
+    "date": "2026-06-29",
+    "kickoffUtc": "2026-06-30T01:00:00Z",
+    "home": "Netherlands",
+    "away": "Morocco",
+    "pick": "HOME",
+    "confidence": 0.4406355864181651,
+    "probabilities": {
+      "home": 0.4406355864181651,
+      "draw": 0.2559503292714205,
+      "away": 0.3034140843104146
+    },
+    "eloDiff": 64.81753276345648,
+    "marketAtPick": 0.4215722801788376,
+    "lowEdge": true,
+    "grade": "PENDING",
+    "scorePick": "1-1",
+    "scoreConfidence": 0.14553817973640618,
+    "scoreMarketAtPick": null,
+    "scoreLowEdge": null,
+    "scoreGrade": "PENDING",
+    "result": null,
+    "pickCommit": null,
+    "ratingsAsOf": null
+  }
+]
