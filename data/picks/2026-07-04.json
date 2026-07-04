@@ -1,0 +1,54 @@
+[
+  {
+    "matchId": "537376",
+    "date": "2026-07-04",
+    "kickoffUtc": "2026-07-04T17:00:00Z",
+    "home": "Canada",
+    "away": "Morocco",
+    "pick": "AWAY",
+    "confidence": 0.5062368158183482,
+    "probabilities": {
+      "home": 0.24649093506023975,
+      "draw": 0.24727224912141207,
+      "away": 0.5062368158183482
+    },
+    "eloDiff": -125.02110940270609,
+    "marketAtPick": 0.5352032054951346,
+    "lowEdge": true,
+    "grade": "PENDING",
+    "scorePick": "1-1",
+    "scoreConfidence": 0.14303735083668484,
+    "scoreMarketAtPick": null,
+    "scoreLowEdge": null,
+    "scoreGrade": "PENDING",
+    "result": null,
+    "pickCommit": null,
+    "ratingsAsOf": null
+  },
+  {
+    "matchId": "537375",
+    "date": "2026-07-04",
+    "kickoffUtc": "2026-07-04T21:00:00Z",
+    "home": "Paraguay",
+    "away": "France",
+    "pick": "AWAY",
+    "confidence": 0.6440647989827178,
+    "probabilities": {
+      "home": 0.14328573408704595,
+      "draw": 0.21264946693023606,
+      "away": 0.6440647989827178
+    },
+    "eloDiff": -261.09064425936776,
+    "marketAtPick": 0.8267159795496574,
+    "lowEdge": false,
+    "grade": "PENDING",
+    "scorePick": "0-1",
+    "scoreConfidence": 0.1488879846473483,
+    "scoreMarketAtPick": null,
+    "scoreLowEdge": null,
+    "scoreGrade": "PENDING",
+    "result": null,
+    "pickCommit": null,
+    "ratingsAsOf": null
+  }
+]
