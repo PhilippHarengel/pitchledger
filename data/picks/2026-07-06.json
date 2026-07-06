@@ -1,0 +1,54 @@
+[
+  {
+    "matchId": "537379",
+    "date": "2026-07-06",
+    "kickoffUtc": "2026-07-06T19:00:00Z",
+    "home": "Portugal",
+    "away": "Spain",
+    "pick": "AWAY",
+    "confidence": 0.524242231355954,
+    "probabilities": {
+      "home": 0.23176094664307495,
+      "draw": 0.2439968220009711,
+      "away": 0.524242231355954
+    },
+    "eloDiff": -141.79669894205085,
+    "marketAtPick": 0.5019190047644256,
+    "lowEdge": true,
+    "grade": "PENDING",
+    "scorePick": "1-1",
+    "scoreConfidence": 0.14055635496157537,
+    "scoreMarketAtPick": null,
+    "scoreLowEdge": null,
+    "scoreGrade": "PENDING",
+    "result": null,
+    "pickCommit": null,
+    "ratingsAsOf": null
+  },
+  {
+    "matchId": "537380",
+    "date": "2026-07-06",
+    "kickoffUtc": "2026-07-07T00:00:00Z",
+    "home": "United States",
+    "away": "Belgium",
+    "pick": "DRAW",
+    "confidence": 0.25898741276976606,
+    "probabilities": {
+      "home": 0.350802999839692,
+      "draw": 0.25898741276976606,
+      "away": 0.39020958739054196
+    },
+    "eloDiff": -18.49385488990083,
+    "marketAtPick": 0.2797761790567546,
+    "lowEdge": true,
+    "grade": "PENDING",
+    "scorePick": "1-1",
+    "scoreConfidence": 0.1502274515227579,
+    "scoreMarketAtPick": null,
+    "scoreLowEdge": null,
+    "scoreGrade": "PENDING",
+    "result": null,
+    "pickCommit": null,
+    "ratingsAsOf": null
+  }
+]
