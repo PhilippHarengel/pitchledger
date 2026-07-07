@@ -1,0 +1,54 @@
+[
+  {
+    "matchId": "537381",
+    "date": "2026-07-07",
+    "kickoffUtc": "2026-07-07T16:00:00Z",
+    "home": "Argentina",
+    "away": "Egypt",
+    "pick": "HOME",
+    "confidence": 0.726368404471347,
+    "probabilities": {
+      "home": 0.726368404471347,
+      "draw": 0.1812902845245787,
+      "away": 0.09234131100407425
+    },
+    "eloDiff": 358.30436356364226,
+    "marketAtPick": 0.7302687014324502,
+    "lowEdge": true,
+    "grade": "PENDING",
+    "scorePick": "2-0",
+    "scoreConfidence": 0.20884587705084148,
+    "scoreMarketAtPick": null,
+    "scoreLowEdge": null,
+    "scoreGrade": "PENDING",
+    "result": null,
+    "pickCommit": null,
+    "ratingsAsOf": null
+  },
+  {
+    "matchId": "537382",
+    "date": "2026-07-07",
+    "kickoffUtc": "2026-07-07T20:00:00Z",
+    "home": "Switzerland",
+    "away": "Colombia",
+    "pick": "AWAY",
+    "confidence": 0.4390440041175488,
+    "probabilities": {
+      "home": 0.304860207762256,
+      "draw": 0.25609578812019507,
+      "away": 0.4390440041175488
+    },
+    "eloDiff": -63.36292369778016,
+    "marketAtPick": 0.4216726706260345,
+    "lowEdge": true,
+    "grade": "PENDING",
+    "scorePick": "1-1",
+    "scoreConfidence": 0.14900288055647842,
+    "scoreMarketAtPick": null,
+    "scoreLowEdge": null,
+    "scoreGrade": "PENDING",
+    "result": null,
+    "pickCommit": null,
+    "ratingsAsOf": null
+  }
+]
