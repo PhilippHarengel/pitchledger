@@ -1,0 +1,28 @@
+[
+  {
+    "matchId": "537383",
+    "date": "2026-07-09",
+    "kickoffUtc": "2026-07-09T20:00:00Z",
+    "home": "France",
+    "away": "Morocco",
+    "pick": "HOME",
+    "confidence": 0.5302355314894476,
+    "probabilities": {
+      "home": 0.5302355314894476,
+      "draw": 0.24282284097847817,
+      "away": 0.22694162753207417
+    },
+    "eloDiff": 147.42186466357248,
+    "marketAtPick": 0.6150206978119456,
+    "lowEdge": false,
+    "grade": "PENDING",
+    "scorePick": "1-1",
+    "scoreConfidence": 0.13195232882588176,
+    "scoreMarketAtPick": null,
+    "scoreLowEdge": null,
+    "scoreGrade": "PENDING",
+    "result": null,
+    "pickCommit": null,
+    "ratingsAsOf": null
+  }
+]
