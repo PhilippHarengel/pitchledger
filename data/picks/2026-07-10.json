@@ -1,0 +1,28 @@
+[
+  {
+    "matchId": "537384",
+    "date": "2026-07-10",
+    "kickoffUtc": "2026-07-10T19:00:00Z",
+    "home": "Spain",
+    "away": "Belgium",
+    "pick": "HOME",
+    "confidence": 0.6609611593643477,
+    "probabilities": {
+      "home": 0.6609611593643477,
+      "draw": 0.20688417178895116,
+      "away": 0.13215466884670118
+    },
+    "eloDiff": 279.6373714529218,
+    "marketAtPick": 0.5920088359527754,
+    "lowEdge": false,
+    "grade": "PENDING",
+    "scorePick": "2-0",
+    "scoreConfidence": 0.17231717348772546,
+    "scoreMarketAtPick": null,
+    "scoreLowEdge": null,
+    "scoreGrade": "PENDING",
+    "result": null,
+    "pickCommit": null,
+    "ratingsAsOf": null
+  }
+]
