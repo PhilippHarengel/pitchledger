@@ -2448,5 +2448,31 @@
     "result": "1–1",
     "pickCommit": null,
     "ratingsAsOf": null
+  },
+  {
+    "matchId": "537387",
+    "date": "2026-07-14",
+    "kickoffUtc": "2026-07-14T19:00:00Z",
+    "home": "France",
+    "away": "Spain",
+    "pick": "AWAY",
+    "confidence": 0.4568444351197171,
+    "probabilities": {
+      "home": 0.2888652337262564,
+      "draw": 0.25429033115402633,
+      "away": 0.4568444351197171
+    },
+    "eloDiff": -79.62922538161274,
+    "marketAtPick": 0.3228644248951739,
+    "lowEdge": false,
+    "grade": "PENDING",
+    "scorePick": "1-1",
+    "scoreConfidence": 0.1479105249443895,
+    "scoreMarketAtPick": null,
+    "scoreLowEdge": null,
+    "scoreGrade": "PENDING",
+    "result": null,
+    "pickCommit": null,
+    "ratingsAsOf": null
   }
 ]
