@@ -1,0 +1,28 @@
+[
+  {
+    "matchId": "537388",
+    "date": "2026-07-15",
+    "kickoffUtc": "2026-07-15T19:00:00Z",
+    "home": "England",
+    "away": "Argentina",
+    "pick": "AWAY",
+    "confidence": 0.45921527357271635,
+    "probabilities": {
+      "home": 0.2867642580787479,
+      "draw": 0.25402046834853587,
+      "away": 0.45921527357271635
+    },
+    "eloDiff": -81.79652154381256,
+    "marketAtPick": 0.3161447641603141,
+    "lowEdge": false,
+    "grade": "PENDING",
+    "scorePick": "1-1",
+    "scoreConfidence": 0.14773893171541172,
+    "scoreMarketAtPick": null,
+    "scoreLowEdge": null,
+    "scoreGrade": "PENDING",
+    "result": null,
+    "pickCommit": null,
+    "ratingsAsOf": null
+  }
+]
