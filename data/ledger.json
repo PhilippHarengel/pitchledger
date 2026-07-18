@@ -2500,5 +2500,31 @@
     "result": "1–2",
     "pickCommit": null,
     "ratingsAsOf": null
+  },
+  {
+    "matchId": "537389",
+    "date": "2026-07-18",
+    "kickoffUtc": "2026-07-18T21:00:00Z",
+    "home": "France",
+    "away": "England",
+    "pick": "HOME",
+    "confidence": 0.43826155521831384,
+    "probabilities": {
+      "home": 0.43826155521831384,
+      "draw": 0.25616613937404575,
+      "away": 0.30557230540764035
+    },
+    "eloDiff": 62.64775391081821,
+    "marketAtPick": 0.5088777796931563,
+    "lowEdge": true,
+    "grade": "PENDING",
+    "scorePick": "1-1",
+    "scoreConfidence": 0.14577510499890767,
+    "scoreMarketAtPick": null,
+    "scoreLowEdge": null,
+    "scoreGrade": "PENDING",
+    "result": null,
+    "pickCommit": null,
+    "ratingsAsOf": null
   }
 ]
