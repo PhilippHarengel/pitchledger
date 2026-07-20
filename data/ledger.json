@@ -2543,13 +2543,13 @@
     "eloDiff": 60.83524157731699,
     "marketAtPick": 0.41770087227856184,
     "lowEdge": true,
-    "grade": "PENDING",
+    "grade": "LOSS",
     "scorePick": "1-1",
     "scoreConfidence": 0.14596831280020234,
     "scoreMarketAtPick": null,
     "scoreLowEdge": null,
-    "scoreGrade": "PENDING",
-    "result": null,
+    "scoreGrade": "LOSS",
+    "result": "0–0",
     "pickCommit": null,
     "ratingsAsOf": null
   }
